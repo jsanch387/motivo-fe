@@ -1,26 +1,63 @@
 @import "tailwindcss";
 
+/* Global CSS Variables */
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: "Urbanist", sans-serif; /* ⬅️ Updated */
+  --font-mono: "Courier New", monospace;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #121212; /* ⬅️ Softer dark tone */
     --foreground: #ededed;
   }
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 9999s ease-in-out 0s;
+  -webkit-text-fill-color: #fff !important;
+  caret-color: rgb(7, 7, 7);
+}
+
+html,
 body {
-  background: var(--background);
+  height: 100%; /* ✅ This is what was missing */
+}
+
+body {
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+/* Custom scrollbar for dark mode */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #1f1f1f; /* dark track */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #4b5563; /* gray-600 */
+  border-radius: 8px;
+  border: 2px solid #1f1f1f; /* blend into track */
+}
+
+/* Firefox support */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #4b5563 #1f1f1f;
+}
+
+html,
+body {
+  width: 100%;
+  overflow-x: hidden; /* ✅ prevents horizontal scroll */
 }
