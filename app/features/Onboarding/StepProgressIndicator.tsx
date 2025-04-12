@@ -22,52 +22,65 @@ export default function StepProgressIndicator({
   onStepClick,
 }: StepProgressProps) {
   const totalSteps = stepLabels.length;
-  const progressPercent = (currentStep / totalSteps) * 100;
+  const brandKitLocked = currentStep >= 7;
 
   return (
-    <div className="mb-10">
-      {/* Progress Bar */}
-      <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
-        <div
-          className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 transition-all duration-500"
-          style={{ width: `${progressPercent}%` }}
-        ></div>
+    <div className="w-full max-w-5xl mx-auto mb-10 px-4">
+      <div className="bg-zinc-900/80 border border-zinc-800 backdrop-blur-sm rounded-xl px-6 py-6 shadow-md">
+        {/* Step Count */}
+        <div className="mb-4 text-center text-sm text-gray-400 font-medium">
+          Step {currentStep} of {totalSteps}
+        </div>
+
+        {/* Steps Progress Tracker */}
+        <div className="relative flex items-center justify-between gap-2 sm:gap-4">
+          {stepLabels.map((label, idx) => {
+            const step = idx + 1;
+            const isActive = step === currentStep;
+            const isPast = step < currentStep;
+            const canClick = isPast && !brandKitLocked;
+
+            return (
+              <div
+                key={step}
+                className="flex-1 flex flex-col items-center group relative"
+              >
+                {/* Dot */}
+                <button
+                  disabled={!canClick}
+                  onClick={() => canClick && onStepClick?.(step)}
+                  className={clsx(
+                    "w-6 h-6 sm:w-7 sm:h-7 rounded-full border-2 z-10 transition",
+                    isActive
+                      ? "border-blue-500 bg-blue-500"
+                      : isPast
+                      ? "border-green-500 bg-green-500"
+                      : "border-zinc-700 bg-zinc-800",
+                    canClick
+                      ? "hover:scale-110 cursor-pointer"
+                      : "cursor-default"
+                  )}
+                />
+                {/* Label */}
+                <span
+                  className={clsx(
+                    "text-[10px] sm:text-sm mt-2 text-center text-gray-400 leading-tight",
+                    isActive && "text-blue-400 font-medium",
+                    isPast && "text-green-400"
+                  )}
+                >
+                  {label}
+                </span>
+
+                {/* Line Between Steps */}
+                {step !== totalSteps && (
+                  <div className="absolute top-3 left-1/2 w-full h-px bg-zinc-700 z-0 sm:left-[calc(50%+18px)] sm:w-[calc(100%-36px)]" />
+                )}
+              </div>
+            );
+          })}
+        </div>
       </div>
-
-      {/* Step Text */}
-      <div className="mt-2 text-right text-sm text-gray-400">
-        Step {currentStep} of {totalSteps}
-      </div>
-
-      {/* Step Labels */}
-      <ul className="mt-6 flex flex-wrap justify-center gap-4 sm:gap-6">
-        {stepLabels.map((label, idx) => {
-          const step = idx + 1;
-          const isActive = step === currentStep;
-          const isPast = step < currentStep;
-          const isFuture = step > currentStep;
-
-          return (
-            <li
-              key={step}
-              className={clsx(
-                "px-4 py-2 rounded-md text-sm font-medium border cursor-default",
-                isActive && "border-blue-500 bg-blue-500/10 text-blue-400",
-                isPast &&
-                  "border-green-600 text-green-400 hover:bg-green-600/10 cursor-pointer",
-                isFuture && "border-gray-700 text-gray-400 opacity-50"
-              )}
-              onClick={() => {
-                if (isPast && onStepClick) {
-                  onStepClick(step);
-                }
-              }}
-            >
-              {label}
-            </li>
-          );
-        })}
-      </ul>
     </div>
   );
 }

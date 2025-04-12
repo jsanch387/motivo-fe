@@ -10,11 +10,11 @@ export default function WhatsNextSection() {
         What’s Next?
       </div>
       <ul className="list-disc list-inside text-sm text-gray-300 space-y-1">
-        <li>✅ Post your flyer on Facebook Marketplace</li>
-        <li>✅ Share your brand on Instagram or TikTok</li>
-        <li>✅ Print your flyer and offer a first-time discount</li>
-        <li>✅ Use this checklist to get your first 3 customers</li>
-        <li>✅ Link your logo to a landing page (coming soon)</li>
+        <li>Post your flyer on Facebook Marketplace</li>
+        <li>Share your brand on Instagram or TikTok</li>
+        <li>Print your flyer and offer a first-time discount</li>
+        <li>Use this checklist to get your first 3 customers</li>
+        <li>Link your logo to a landing page (coming soon)</li>
       </ul>
     </div>
   );

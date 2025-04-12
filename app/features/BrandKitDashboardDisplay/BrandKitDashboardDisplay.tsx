@@ -1,13 +1,12 @@
 "use client";
 
-import Card from "@/app/components/ui/Card";
 import { useState } from "react";
-import ServicesSection from "./ServicesSection";
-import ToolsChecklistSection from "./ToolsChecklistSection";
+import ServicesSection from "./ServicesSection/ServicesSection";
 import BusinessInfoCard from "./BusinessInfoCard";
 import BrandColorsCard from "./BrandColors";
 import WhatsNextSection from "./WhatsNextSection";
 import { BrandKit } from "../Onboarding/types/brandKit.type";
+import ToolsSection from "./ToolsSection/ToolsSection";
 
 interface Props {
   brandKit: BrandKit;
@@ -23,13 +22,13 @@ export default function BrandKitDashboardDisplay({ brandKit }: Props) {
   };
 
   return (
-    <main className="space-y-10 max-w-6xl mx-auto">
+    <main className="space-y-10 max-w-5xl mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <BusinessInfoCard
           name={brandKit.business_name}
           slogan={brandKit.slogan}
           serviceType={brandKit.service_type}
-          logoId={brandKit.id}
+          logoId={brandKit.logo_url}
         />
         <BrandColorsCard
           brandColors={brandKit.brand_colors}
@@ -38,13 +37,15 @@ export default function BrandKitDashboardDisplay({ brandKit }: Props) {
         />
       </div>
 
-      <Card title="Services & Pricing">
-        <ServicesSection services={brandKit.services} />
-      </Card>
+      <ServicesSection
+        user_services={brandKit.user_services}
+        suggested_services={brandKit.suggested_services}
+      />
 
-      <Card title="Tools & Checklist">
-        <ToolsChecklistSection tools={brandKit.tools} />
-      </Card>
+      <ToolsSection
+        user_tools={brandKit.user_tools}
+        suggested_tools={brandKit.suggested_tools}
+      />
 
       <WhatsNextSection />
     </main>

@@ -1,29 +1,26 @@
-export type BrandKitColor = string;
-
-export type BrandService = {
+export type Service = {
   name: string;
   price: number;
-  source: "user" | "ai"; // ✅ Added source
+  source: "user" | "ai";
 };
 
-export type BrandTool = {
+export type Tool = {
   name: string;
+  source: "user" | "ai";
   checked: boolean;
-  source: "user" | "ai"; // ✅ Added source
 };
 
 export type BrandKit = {
-  id: string;
-  user_id: string;
-  logo_url: string; // ✅ Still used
+  logo_url: string;
   business_name: string;
   slogan: string;
+  brand_colors: string[];
   service_type: string;
   location: string;
-  brand_colors: BrandKitColor[];
-  services: BrandService[];
-  tools: BrandTool[];
   is_paid: boolean;
-  created_at: string; // ISO timestamp
-  updated_at: string; // ISO timestamp
+
+  user_services: Service[];
+  suggested_services: Service[];
+  user_tools: Tool[];
+  suggested_tools: Tool[];
 };
