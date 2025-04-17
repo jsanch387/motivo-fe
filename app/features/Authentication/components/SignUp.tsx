@@ -9,6 +9,7 @@ import { signUpWithEmail, createUserProfile } from "@/lib/supabase/client"; // ð
 import TextInput from "@/app/components/ui/TextInput";
 import Button from "@/app/components/ui/Button";
 import Card from "@/app/components/ui/Card";
+import { ROUTES } from "@/lib/constants/routes";
 
 export default function SignupForm() {
   const router = useRouter();
@@ -51,7 +52,7 @@ export default function SignupForm() {
     }
 
     // âœ… All good
-    router.push("/dashboard");
+    router.push(ROUTES.DASHBOARD);
     setLoading(false);
   };
 

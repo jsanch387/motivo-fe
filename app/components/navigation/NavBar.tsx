@@ -4,13 +4,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Button from "../ui/Button";
 import { useAuthStore } from "../../features/Authentication/store/useAuthStore";
+import { ROUTES } from "@/lib/constants/routes";
 
 export default function Navbar() {
   const pathname = usePathname();
-  const user = useAuthStore((s) => s.user); // ← grab user from store
+  const user = useAuthStore((s) => s.user);
 
   return (
-    <nav className="backdrop-blur-md bg-[rgba(16,22,34,0.8)] border-b border-gray-800">
+    <nav className="bg-zinc-900 border-b border-zinc-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
@@ -35,20 +36,18 @@ export default function Navbar() {
           {/* Right side auth buttons */}
           <div className="flex items-center space-x-4">
             {user ? (
-              <>
-                <Button href="/dashboard" type="primary" size="sm">
-                  Dashboard
-                </Button>
-              </>
+              <Button href={ROUTES.BRAND_KIT} type="primary" size="sm">
+                Dashboard
+              </Button>
             ) : (
               <>
                 <Link
-                  href="/login"
+                  href={ROUTES.LOGIN}
                   className="text-md text-gray-300 hover:text-blue-400 transition"
                 >
                   Log in
                 </Link>
-                <Button href="/signup" type="primary" size="sm">
+                <Button href={ROUTES.SIGNUP} type="primary" size="sm">
                   Sign up
                 </Button>
               </>

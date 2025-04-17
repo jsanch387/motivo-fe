@@ -1,4 +1,3 @@
-// app/dashboard/starter-kit/api/fetchBrandKit.ts
 import apiClient from "@/lib/api/apiClient";
 import { BrandKit } from "../types/brandKit.type";
 

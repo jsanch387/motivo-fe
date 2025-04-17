@@ -8,6 +8,8 @@ import { GetOnboardingResponse } from "../../api/fetchOnboardingStatusWithData";
 import OnboardingCard from "../OnboardingCard";
 import { OnboardingData } from "../../types/onboarding.type";
 
+//Color palette step
+
 type Props = {
   initialData: GetOnboardingResponse;
   onNext: () => void;

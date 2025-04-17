@@ -12,9 +12,8 @@ export default function LockedKitFooter() {
   const handlePurchase = async () => {
     try {
       setLoading(true);
-      await purchaseBrandKit();
-      setSuccess(true);
-      // optionally: refresh the brand kit or navigate
+      const url = await purchaseBrandKit();
+      window.location.href = url;
     } catch (err) {
       console.error("❌ Failed to purchase brand kit", err);
       alert("Something went wrong. Try again.");

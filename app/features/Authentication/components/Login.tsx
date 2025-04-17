@@ -9,6 +9,7 @@ import TextInput from "@/app/components/ui/TextInput";
 import Button from "@/app/components/ui/Button";
 import Card from "@/app/components/ui/Card";
 import { ExclamationTriangleIcon } from "@heroicons/react/16/solid";
+import { ROUTES } from "@/lib/constants/routes";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -28,7 +29,7 @@ export default function LoginForm() {
     if (error) {
       setErrorMsg(error.message || "Login failed. Please try again.");
     } else {
-      router.push("/dashboard");
+      router.push(ROUTES.DASHBOARD);
     }
 
     setLoading(false);

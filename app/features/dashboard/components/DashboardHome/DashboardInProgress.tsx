@@ -1,6 +1,7 @@
 import WelcomeBanner from "./WelcomeBanner";
 import StarterKitProgress from "./StarterKitProgress";
 import { DashboardResponse } from "../../types/dashboard.type";
+import { ROUTES } from "@/lib/constants/routes";
 
 interface Props {
   data: DashboardResponse;
@@ -14,7 +15,7 @@ export default function DashboardInProgress({ data }: Props) {
         <StarterKitProgress
           progress={data.progress.completedSteps}
           isCompleted={false}
-          onClick={() => window.location.assign("/dashboard/starter-kit")}
+          onClick={() => window.location.assign(ROUTES.BRAND_KIT)}
         />
       )}
     </main>

@@ -1,5 +1,3 @@
-// app/dashboard/starter-kit/api/generateBrandKit.ts
-
 import apiClient from "@/lib/api/apiClient";
 
 export const generateBrandKit = async () => {

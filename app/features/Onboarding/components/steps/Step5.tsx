@@ -87,12 +87,11 @@ export default function Step5({ initialData, onNext, onUpdate }: Props) {
   };
 
   return (
-    <OnboardingCard title="Define your services & pricing">
-      <p className="text-sm text-gray-400 mb-6">
-        Don’t have services or pricing yet? No worries — we’ll help you generate
-        that next.
-      </p>
-
+    <OnboardingCard
+      title="Define your services & pricing"
+      subtext=" Don’t have services or pricing yet? No worries — we’ll help you generate
+        that next."
+    >
       <div className="space-y-6 mb-10">
         {services.map((service) => (
           <div key={service.id} className="flex items-end gap-4">

@@ -7,11 +7,9 @@ export type GetOnboardingResponse = {
   brand_kit_status: "not_started" | "in_progress" | "completed";
   current_step?: number;
   brand_kit?: BrandKit;
+  flyer_url?: string; // ✅ NEW
 } & Partial<OnboardingData>;
 
-/**
- * Server-side fetch for onboarding status + data.
- */
 export async function fetchOnboardingStatusWithData(): Promise<GetOnboardingResponse> {
   const apiClient = await createServerApiClient();
   const { data } = await apiClient.get<GetOnboardingResponse>(

@@ -42,9 +42,7 @@ export default function ToolsSection({
 
   return (
     <section className="mb-10">
-      <h3 className="text-xl font-semibold text-white mb-4">
-        Tools & Checklist
-      </h3>
+      <h3 className="text-xl font-semibold text-white mb-4">Tools</h3>
 
       <div className="bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-6 sm:px-6 sm:py-8">
         {/* Top: Tabs + Helper Text */}

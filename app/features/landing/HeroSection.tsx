@@ -1,46 +1,50 @@
 "use client";
 
-import Button from "@/app/components/ui/Button";
 import Image from "next/image";
+import Button from "@/app/components/ui/Button";
 
 export default function HeroSection() {
   return (
-    <section className="relative overflow-hidden px-6 sm:px-10 lg:px-20 py-32 sm:py-40 lg:py-52 min-h-[90vh] flex items-center justify-center">
-      {/* Background Glow */}
-      <div className="absolute inset-0 -z-10 pointer-events-none">
-        <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-purple-700 opacity-30 blur-3xl rounded-full transform -translate-x-1/2 -translate-y-1/2" />
-        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-600 opacity-30 blur-2xl rounded-full transform translate-x-1/2 translate-y-1/2" />
+    <section className="relative px-6 sm:px-10 lg:px-20 pt-24 pb-20 sm:pt-32 sm:pb-32 lg:pt-36 lg:pb-36 text-center">
+      {/* Glow Background */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute left-1/2 top-0 w-[1000px] h-[1000px] bg-gradient-to-r from-purple-500 via-blue-500 to-pink-500 opacity-20 blur-[120px] transform -translate-x-1/2 -translate-y-1/2 rounded-full" />
       </div>
 
-      <div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-        {/* Left Content */}
-        <div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 mb-6">
-            Build & Launch Your Side Hustle — Fast.
-          </h1>
-          <p className="text-gray-400 text-lg sm:text-xl max-w-xl mb-10">
-            Generate your business name, logo, website, social posts, and legal
-            docs — all with AI. Everything you need to get started in one place.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Button href="/auth/signup" type="primary" size="lg">
-              🚀 Start Building
-            </Button>
+      {/* Heading & CTA */}
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight text-white mb-6">
+          Build Your Brand.
+          <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
+            Launch with Confidence.
+          </span>
+        </h1>
+        <p className="text-gray-400 text-lg sm:text-xl max-w-2xl mx-auto mb-10">
+          Everything you need to get your side hustle off the ground — from name
+          and logo to services, tools, and a custom flyer.
+        </p>
 
-            <Button href="/dashboard" type="secondary" size="lg">
-              Preview Dashboard
-            </Button>
-          </div>
+        <div className="flex flex-col sm:flex-row justify-center gap-4">
+          <Button href="/signup" type="primary" size="lg">
+            Get Started
+          </Button>
+          <Button href="/dashboard" type="secondary" size="lg">
+            Dashboard
+          </Button>
         </div>
+      </div>
 
-        {/* Right Image / Visual */}
-        <div className="flex justify-center">
+      {/* Screenshot */}
+      <div className="mt-16 sm:mt-20 flex justify-center">
+        <div className="w-full max-w-[1150px] lg:max-w-[1280px] rounded-xl overflow-hidden">
           <Image
-            src="/next.svg"
-            alt="Hero Visual"
-            width={320}
-            height={320}
-            className="opacity-80 dark:invert"
+            src="/brand-kit3.png" // replace with your correct path
+            alt="Generated Brand Kit Preview"
+            width={2000}
+            height={1200}
+            className="w-full h-auto object-cover rounded-xl"
+            priority
           />
         </div>
       </div>

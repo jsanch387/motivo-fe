@@ -63,7 +63,7 @@ export async function logout() {
 
 export async function createUserProfile(userId: string, email: string) {
   const { error } = await supabase.from("profiles").insert({
-    id: userId,
+    user_id: userId,
     email,
   });
 

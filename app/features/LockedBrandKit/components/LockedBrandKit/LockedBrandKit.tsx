@@ -14,28 +14,30 @@ interface Props {
 
 export default function LockedBrandKit({ brandKit }: Props) {
   return (
-    <OnboardingCard title="">
-      <div className="space-y-12">
-        <LockedLogoAndName
-          name={brandKit.business_name}
-          logoUrl={brandKit.logo_url}
-          slogan={brandKit.slogan}
-          serviceType={brandKit.service_type}
-        />
-        <LockedBrandColors colors={brandKit.brand_colors} />
-        <ServicesSection
-          user_services={brandKit.user_services}
-          suggested_services={brandKit.suggested_services}
-          isLockedPreview={true}
-        />
-        <ToolsSection
-          user_tools={brandKit.user_tools}
-          suggested_tools={brandKit.suggested_tools}
-          isLockedPreview={true}
-        />
-      </div>
+    <div className="max-w-6xl mx-auto">
+      <OnboardingCard title="">
+        <div className="space-y-12">
+          <LockedLogoAndName
+            name={brandKit.business_name}
+            logoUrl={brandKit.logo_url}
+            slogan={brandKit.slogan}
+            serviceType={brandKit.service_type}
+          />
+          <LockedBrandColors colors={brandKit.brand_colors} />
+          <ServicesSection
+            user_services={brandKit.user_services}
+            suggested_services={brandKit.suggested_services}
+            isLockedPreview={true}
+          />
+          <ToolsSection
+            user_tools={brandKit.user_tools}
+            suggested_tools={brandKit.suggested_tools}
+            isLockedPreview={true}
+          />
+        </div>
 
-      <LockedKitFooter />
-    </OnboardingCard>
+        <LockedKitFooter />
+      </OnboardingCard>
+    </div>
   );
 }

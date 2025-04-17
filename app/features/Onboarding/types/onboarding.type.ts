@@ -23,7 +23,7 @@ export type OnboardingData = {
   // Step 4
   logo_style_options: string[];
   selected_logo_style: string;
-  selected_logo_id: string;
+  selected_logo_url: string;
 
   // Step 5
   services: Service[];

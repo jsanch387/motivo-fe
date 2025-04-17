@@ -1,5 +1,6 @@
 "use client";
 
+import { ROUTES } from "@/lib/constants/routes";
 import { DashboardResponse } from "../../types/dashboard.type";
 import WelcomeBanner from "./WelcomeBanner";
 import Card from "@/app/components/ui/Card";
@@ -18,17 +19,17 @@ export default function DashboardCompleted({}: Props) {
   const quickActions = [
     {
       label: "Edit Brand Kit",
-      href: "/dashboard/starter-kit",
+      href: ROUTES.BRAND_KIT,
       icon: <PencilSquareIcon className="w-5 h-5 text-blue-400" />,
     },
     {
       label: "Add New Service",
-      href: "/dashboard/starter-kit#services",
+      href: ROUTES.BRAND_KIT,
       icon: <PlusIcon className="w-5 h-5 text-green-400" />,
     },
     {
       label: "View Your Flyer",
-      href: "#",
+      href: ROUTES.BRAND_KIT,
       icon: <DocumentTextIcon className="w-5 h-5 text-purple-400" />,
     },
   ];

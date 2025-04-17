@@ -3,6 +3,7 @@
 import Button from "@/app/components/ui/Button";
 import { useRouter } from "next/navigation";
 import { BrandKitStatus } from "../../types/dashboard.type";
+import { ROUTES } from "@/lib/constants/routes";
 
 interface Props {
   status: BrandKitStatus;
@@ -34,7 +35,7 @@ export default function WelcomeBanner({ status }: Props) {
       <Button
         type="primary"
         size="lg"
-        onClick={() => router.push("/dashboard/starter-kit")}
+        onClick={() => router.push(ROUTES.BRAND_KIT)}
       >
         {buttonText}
       </Button>

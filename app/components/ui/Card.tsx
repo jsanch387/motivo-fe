@@ -19,8 +19,8 @@ export default function Card({
   return (
     <div
       className={clsx(
-        "bg-[rgba(255,255,255,0.02)] border border-gray-800 rounded-xl shadow-sm backdrop-blur-sm",
-        padded ? "p-6" : "",
+        "bg-zinc-900 border border-zinc-800 rounded-xl",
+        padded ? "px-4 py-6 sm:px-6 sm:py-8" : "",
         className
       )}
     >

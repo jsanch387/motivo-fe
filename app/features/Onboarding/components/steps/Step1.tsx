@@ -7,6 +7,7 @@ import SelectInput from "@/app/components/ui/SelectInput";
 import { GetOnboardingResponse } from "../../api/fetchOnboardingStatusWithData";
 import { saveOnboardingProgress } from "../../api/saveOnboardingProgress";
 import { OnboardingData } from "../../types/onboarding.type";
+import OnboardingCard from "../OnboardingCard";
 
 const readinessOptions = [
   {
@@ -78,11 +79,7 @@ export default function Step1({ initialData, onNext, onUpdate }: Props) {
   };
 
   return (
-    <div className="max-w-3xl mx-auto bg-gradient-to-b from-[#151a25] to-[#0f1117] border border-gray-800 rounded-2xl p-10 sm:p-12 lg:p-16 shadow-xl backdrop-blur-md">
-      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-10 text-white leading-tight">
-        🚀 Let’s get to know your hustle
-      </h2>
-
+    <OnboardingCard title="Let’s get to know your hustle">
       <div className="space-y-8">
         <TextInput
           label="What side hustle are you starting?"
@@ -114,7 +111,6 @@ export default function Step1({ initialData, onNext, onUpdate }: Props) {
           error="This field is required"
         />
       </div>
-
       <div className="mt-12 text-right">
         <Button
           type="primary"
@@ -124,9 +120,9 @@ export default function Step1({ initialData, onNext, onUpdate }: Props) {
             !form.service_type || !form.location || !form.readiness_level
           }
         >
-          Build My Starter Kit
+          Start Brand Kit
         </Button>
       </div>
-    </div>
+    </OnboardingCard>
   );
 }

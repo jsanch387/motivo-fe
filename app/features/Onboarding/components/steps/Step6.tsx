@@ -84,7 +84,10 @@ export default function Step6({ initialData, onNext, onUpdate }: Props) {
   };
 
   return (
-    <OnboardingCard title="🧰 Add your tools & gear">
+    <OnboardingCard
+      title="Add your tools & gear"
+      subtext="Do you have any tools already? If not, no worries! We will generate a list of tools for you."
+    >
       <div className="space-y-4 mb-10">
         {tools.map((tool) => (
           <div
@@ -114,19 +117,21 @@ export default function Step6({ initialData, onNext, onUpdate }: Props) {
         ))}
       </div>
 
-      <div className="flex items-end gap-4 mb-10">
-        <div className="flex-1">
-          <TextInput
-            label="Add a new tool"
-            name="newTool"
-            value={newTool}
-            onChange={(e) => setNewTool(e.target.value)}
-            placeholder="e.g. Water Tank, Polisher"
-          />
+      {/* Add Tool Input */}
+      <div className="mb-10">
+        <TextInput
+          label="Add a new tool"
+          name="newTool"
+          value={newTool}
+          onChange={(e) => setNewTool(e.target.value)}
+          placeholder="e.g. Water Tank, Polisher"
+        />
+
+        <div className="mt-3">
+          <Button type="secondary" size="sm" onClick={handleAdd}>
+            + Add Tool
+          </Button>
         </div>
-        <Button type="secondary" size="sm" onClick={handleAdd}>
-          + Add Tool
-        </Button>
       </div>
 
       <div className="text-right">
@@ -150,7 +155,7 @@ const defaultOnboardingData: OnboardingData = {
   selected_color_palette: [],
   logo_style_options: ["Minimal", "Playful", "Bold"],
   selected_logo_style: "",
-  selected_logo_id: "",
+  selected_logo_url: "",
   services: [],
   tools: [],
   slogan: "",
