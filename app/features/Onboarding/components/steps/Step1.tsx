@@ -67,7 +67,7 @@ export default function Step1({ initialData, onNext, onUpdate }: Props) {
       initialData.readiness_level !== updatedData.readiness_level;
 
     if (hasChanged) {
-      onUpdate(updatedData); // only call this if something changed
+      onUpdate(updatedData);
 
       await saveOnboardingProgress({
         ...(initialData as Partial<OnboardingData>),
@@ -75,14 +75,17 @@ export default function Step1({ initialData, onNext, onUpdate }: Props) {
       } as OnboardingData);
     }
 
-    onNext(); // ✅ Always go to next step regardless
+    onNext();
   };
 
   return (
-    <OnboardingCard title="Let’s get to know your hustle">
-      <div className="space-y-8">
+    <OnboardingCard
+      title="Let’s get to know your hustle"
+      subtext="We’ll use this info to create your brand kit."
+    >
+      <div className="space-y-5">
         <TextInput
-          label="What side hustle are you starting?"
+          label="What type of side hustle are you starting?"
           name="service_type"
           value={form.service_type}
           onChange={handleInputChange}
@@ -92,7 +95,7 @@ export default function Step1({ initialData, onNext, onUpdate }: Props) {
         />
 
         <SelectInput
-          label="Where are you in your hustle journey?"
+          label="Where are you in your journey?"
           name="readiness_level"
           value={form.readiness_level}
           onChange={handleSelectChange}
@@ -102,16 +105,17 @@ export default function Step1({ initialData, onNext, onUpdate }: Props) {
         />
 
         <TextInput
-          label="Where will you operate?"
+          label="What city or ZIP will you serve?"
           name="location"
           value={form.location}
           onChange={handleInputChange}
-          placeholder="City or ZIP"
+          placeholder="e.g. Austin, 78704"
           required
           error="This field is required"
         />
       </div>
-      <div className="mt-12 text-right">
+
+      <div className="mt-10 text-right">
         <Button
           type="primary"
           size="lg"

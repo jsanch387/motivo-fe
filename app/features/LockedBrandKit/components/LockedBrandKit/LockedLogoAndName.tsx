@@ -13,7 +13,7 @@ interface Props {
 export default function LockedLogoAndName({
   name,
   logoUrl,
-  slogan,
+  // slogan,
   serviceType,
 }: Props) {
   return (
@@ -31,7 +31,7 @@ export default function LockedLogoAndName({
             />
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <span className="rotate-[-25deg] text-gray-500 text-sm font-bold opacity-30">
-                MENTO
+                Motivo
               </span>
             </div>
           </>
@@ -54,9 +54,9 @@ export default function LockedLogoAndName({
       <div className="mt-6 sm:mt-0">
         <h3 className="text-3xl font-bold text-white">{name}</h3>
 
-        {slogan && (
+        {/* {slogan && (
           <p className="text-gray-400 text-sm mt-2 italic">{slogan}</p>
-        )}
+        )} */}
 
         {serviceType && (
           <p className="text-gray-500 text-sm mt-4">

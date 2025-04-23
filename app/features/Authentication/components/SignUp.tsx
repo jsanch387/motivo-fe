@@ -10,6 +10,7 @@ import TextInput from "@/app/components/ui/TextInput";
 import Button from "@/app/components/ui/Button";
 import Card from "@/app/components/ui/Card";
 import { ROUTES } from "@/lib/constants/routes";
+import PasswordInput from "@/app/components/ui/PasswordInput";
 
 export default function SignupForm() {
   const router = useRouter();
@@ -77,20 +78,18 @@ export default function SignupForm() {
           required
           error="Email is required"
         />
-        <TextInput
+        <PasswordInput
           label="Password"
           name="password"
-          type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="••••••••"
           required
           error="Password is required"
         />
-        <TextInput
+        <PasswordInput
           label="Confirm Password"
           name="confirm"
-          type="password"
           value={confirm}
           onChange={(e) => setConfirm(e.target.value)}
           placeholder="••••••••"

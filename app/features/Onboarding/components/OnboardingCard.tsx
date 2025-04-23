@@ -1,4 +1,3 @@
-// app/features/BrandKitOnboard/components/OnboardingCard.tsx
 "use client";
 
 import { ReactNode } from "react";
@@ -9,6 +8,7 @@ type Props = {
   subtext?: string;
   children: ReactNode;
   className?: string;
+  showDivider?: boolean; // 🔹 optional prop
 };
 
 export default function OnboardingCard({
@@ -16,11 +16,12 @@ export default function OnboardingCard({
   subtext,
   children,
   className = "",
+  showDivider = true, // ✅ show divider by default
 }: Props) {
   return (
     <div
       className={clsx(
-        "w-full mx-auto bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-6 sm:px-6 sm:py-8",
+        "w-full mx-auto bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-5 sm:px-6 sm:py-7",
         className
       )}
     >
@@ -28,8 +29,12 @@ export default function OnboardingCard({
         {title}
       </h2>
       {subtext && (
-        <p className="text-gray-400 text-sm mb-6 max-w-2xl">{subtext}</p>
+        <p className="text-gray-400 text-sm mb-4 max-w-2xl">{subtext}</p>
       )}
+
+      {/* Divider line (optional) */}
+      {showDivider && <div className="border-t border-zinc-800 mb-6" />}
+
       {children}
     </div>
   );

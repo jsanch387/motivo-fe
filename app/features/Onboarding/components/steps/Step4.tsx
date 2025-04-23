@@ -96,36 +96,37 @@ export default function Step4({ initialData, onNext, onUpdate }: Props) {
   };
 
   return (
-    <OnboardingCard title="Pick a logo style that fits your vibe">
-      <p className="text-gray-400 text-sm mb-6 max-w-2xl">
-        Choose a style that feels right for your business. This helps us create
-        a logo that matches your brand’s personality.
-      </p>
-
-      {/* ✅ Return user with existing logo */}
+    <OnboardingCard
+      title="Pick a logo style that fits your vibe"
+      subtext=" Choose a style that feels right for your business. This helps us create
+        a logo that matches your brand’s personality."
+    >
+      {/* ✅ Display selected logo if already generated */}
       {hasExistingLogo && !loading && (
-        <>
-          <div className="flex justify-center mb-10">
-            <div className="relative w-36 h-36 bg-zinc-800 rounded-lg overflow-hidden border border-zinc-700">
+        <div className="flex flex-col items-center justify-center min-h-[300px] relative">
+          <div className="w-full flex justify-center mb-12">
+            <div className="relative w-[200px] h-[200px] sm:w-[240px] sm:h-[240px] bg-zinc-800 rounded-xl overflow-hidden border border-zinc-700 shadow-lg">
               <Image
                 src={selectedLogo}
-                alt="Your Selected Logo"
+                alt="Selected Logo"
                 fill
                 unoptimized
                 className="object-contain"
               />
             </div>
           </div>
-          <div className="text-center">
+
+          {/* Continue button aligned to bottom right */}
+          <div className="w-full flex justify-end">
             <Button type="primary" size="lg" onClick={handleContinue}>
               Continue
             </Button>
           </div>
-          return;
-        </>
+        </div>
       )}
 
-      {!hasGenerated && !loading && (
+      {/* ✨ Logo Style Selector */}
+      {!hasGenerated && !loading && !hasExistingLogo && (
         <>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
             {LOGO_STYLE_OPTIONS.map(({ label, value, description, icon }) => (
@@ -162,6 +163,7 @@ export default function Step4({ initialData, onNext, onUpdate }: Props) {
         </>
       )}
 
+      {/* ✏️ Loading State */}
       {loading && (
         <div className="flex items-center justify-center mb-10">
           <Loader2 className="animate-spin text-white w-6 h-6 mr-2" />
@@ -169,6 +171,7 @@ export default function Step4({ initialData, onNext, onUpdate }: Props) {
         </div>
       )}
 
+      {/* ✨ Show generated logos if not selected yet */}
       {hasGenerated && !hasExistingLogo && (
         <>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">

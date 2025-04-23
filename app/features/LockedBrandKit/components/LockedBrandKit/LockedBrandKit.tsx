@@ -15,7 +15,7 @@ interface Props {
 export default function LockedBrandKit({ brandKit }: Props) {
   return (
     <div className="max-w-6xl mx-auto">
-      <OnboardingCard title="">
+      <OnboardingCard title="" showDivider={false}>
         <div className="space-y-12">
           <LockedLogoAndName
             name={brandKit.business_name}

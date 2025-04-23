@@ -1,6 +1,7 @@
 "use client";
 
 import { ROUTES } from "@/lib/constants/routes";
+import { VARIABLES } from "@/lib/constants/variables";
 import Link from "next/link";
 
 export default function Footer() {
@@ -72,7 +73,7 @@ export default function Footer() {
                 href="mailto:hello@motivo.app"
                 className="hover:text-blue-400 transition"
               >
-                hello@motivo.app
+                {VARIABLES.EMAIL}
               </a>
             </li>
             <li>

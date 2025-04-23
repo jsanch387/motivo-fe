@@ -1,13 +1,13 @@
 "use client";
 
-import { ROUTES } from "@/lib/constants/routes";
+// import { ROUTES } from "@/lib/constants/routes";
 import { DashboardResponse } from "../../types/dashboard.type";
 import WelcomeBanner from "./WelcomeBanner";
 import Card from "@/app/components/ui/Card";
 import {
-  PencilSquareIcon,
-  PlusIcon,
-  DocumentTextIcon,
+  // PencilSquareIcon,
+  // PlusIcon,
+  // DocumentTextIcon,
   LightBulbIcon,
 } from "@heroicons/react/24/outline";
 
@@ -16,23 +16,23 @@ interface Props {
 }
 
 export default function DashboardCompleted({}: Props) {
-  const quickActions = [
-    {
-      label: "Edit Brand Kit",
-      href: ROUTES.BRAND_KIT,
-      icon: <PencilSquareIcon className="w-5 h-5 text-blue-400" />,
-    },
-    {
-      label: "Add New Service",
-      href: ROUTES.BRAND_KIT,
-      icon: <PlusIcon className="w-5 h-5 text-green-400" />,
-    },
-    {
-      label: "View Your Flyer",
-      href: ROUTES.BRAND_KIT,
-      icon: <DocumentTextIcon className="w-5 h-5 text-purple-400" />,
-    },
-  ];
+  // const quickActions = [
+  //   {
+  //     label: "Edit Brand Kit",
+  //     href: ROUTES.BRAND_KIT,
+  //     icon: <PencilSquareIcon className="w-5 h-5 text-blue-400" />,
+  //   },
+  //   {
+  //     label: "Add New Service",
+  //     href: ROUTES.BRAND_KIT,
+  //     icon: <PlusIcon className="w-5 h-5 text-green-400" />,
+  //   },
+  //   {
+  //     label: "View Your Flyer",
+  //     href: ROUTES.BRAND_KIT,
+  //     icon: <DocumentTextIcon className="w-5 h-5 text-purple-400" />,
+  //   },
+  // ];
 
   const nextSteps = [
     "Share your flyer on Instagram or Facebook.",
@@ -47,7 +47,7 @@ export default function DashboardCompleted({}: Props) {
       <WelcomeBanner status="completed" />
 
       {/* ⚡ Quick Actions */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      {/* <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {quickActions.map((action, i) => (
           <Card
             key={i}
@@ -62,7 +62,7 @@ export default function DashboardCompleted({}: Props) {
             </a>
           </Card>
         ))}
-      </div>
+      </div> */}
 
       {/* 💡 Next Steps */}
       <Card>

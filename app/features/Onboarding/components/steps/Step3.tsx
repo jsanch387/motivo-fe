@@ -85,7 +85,10 @@ export default function Step3({ initialData, onNext, onUpdate }: Props) {
   };
 
   return (
-    <OnboardingCard title="Choose your brand colors">
+    <OnboardingCard
+      title="Choose your brand colors"
+      subtext="Select a color palette that best represents your brand."
+    >
       {loading ? (
         <div className="flex flex-col items-center justify-center min-h-[200px]">
           <div className="animate-spin h-10 w-10 border-4 border-blue-500 border-t-transparent mb-4 rounded-full" />

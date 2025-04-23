@@ -22,7 +22,7 @@ export default function BrandKitDashboardDisplay({ brandKit }: Props) {
   };
 
   return (
-    <main className="space-y-10 max-w-6xl mx-auto">
+    <main className="space-y-10 max-w-6xl mx-auto px-4 md:px-0">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <BusinessInfoCard
           name={brandKit.business_name}

@@ -1,5 +1,6 @@
 "use client";
 
+import { CheckIcon } from "@heroicons/react/24/solid";
 import clsx from "clsx";
 import { useEffect, useRef } from "react";
 
@@ -76,7 +77,7 @@ export default function StepProgressIndicator({
                     disabled={!canClick}
                     onClick={() => canClick && onStepClick?.(step)}
                     className={clsx(
-                      "w-6 h-6 sm:w-7 sm:h-7 rounded-full border-2 z-10 transition",
+                      "w-6 h-6 sm:w-7 sm:h-7 rounded-full border-2 z-10 transition flex items-center justify-center",
                       isActive
                         ? "border-blue-500 bg-blue-500"
                         : isPast
@@ -86,7 +87,10 @@ export default function StepProgressIndicator({
                         ? "hover:scale-110 cursor-pointer"
                         : "cursor-default"
                     )}
-                  />
+                  >
+                    {isPast && <CheckIcon className="w-4 h-4 text-white" />}
+                  </button>
+
                   <span
                     className={clsx(
                       "text-[10px] sm:text-sm mt-2 text-gray-400 leading-tight whitespace-nowrap",

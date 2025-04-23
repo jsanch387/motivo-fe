@@ -16,9 +16,10 @@ type Props = {
   onUpdate: (values: Partial<GetOnboardingResponse>) => void;
 };
 
+const MAX_REGENERATIONS = 3;
+
 export default function Step2({ initialData, onNext, onUpdate }: Props) {
   const hasFetchedRef = useRef(false);
-
   const [nameOptions, setNameOptions] = useState<string[]>(
     initialData.business_name_suggestions || []
   );
@@ -28,18 +29,19 @@ export default function Step2({ initialData, onNext, onUpdate }: Props) {
   const [customName, setCustomName] = useState(initialData.custom_name || "");
   const [loading, setLoading] = useState(false);
   const [regenerating, setRegenerating] = useState(false);
+  const [regenerationsLeft, setRegenerationsLeft] = useState(MAX_REGENERATIONS);
 
   useEffect(() => {
     const shouldFetch = !hasFetchedRef.current && nameOptions.length === 0;
-
     if (shouldFetch) {
       hasFetchedRef.current = true;
       fetchNames();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchNames = async (isRegenerate = false) => {
+    if (isRegenerate && regenerationsLeft <= 0) return;
+
     setLoading(true);
     setRegenerating(isRegenerate);
 
@@ -48,6 +50,9 @@ export default function Step2({ initialData, onNext, onUpdate }: Props) {
       setNameOptions(suggestions);
       setSelected(null);
       setCustomName("");
+      if (isRegenerate) {
+        setRegenerationsLeft((prev) => prev - 1);
+      }
     } catch (err) {
       console.error("❌ Failed to fetch business names:", err);
     } finally {
@@ -83,12 +88,10 @@ export default function Step2({ initialData, onNext, onUpdate }: Props) {
       current_step: 3,
     };
 
-    // Merge safely
     const merged: OnboardingData = {
       ...defaultOnboardingData,
       ...initialData,
       ...updatedData,
-      current_step: 3,
     };
 
     onUpdate(updatedData);
@@ -101,7 +104,10 @@ export default function Step2({ initialData, onNext, onUpdate }: Props) {
   };
 
   return (
-    <OnboardingCard title="Pick a business name">
+    <OnboardingCard
+      title="Pick a business name"
+      subtext="Choose a name that fits your vibe. You can enter your own or pick from our AI suggestions."
+    >
       {loading ? (
         <div className="flex flex-col items-center justify-center min-h-[200px]">
           <div className="animate-spin rounded-full h-10 w-10 border-4 border-blue-500 border-t-transparent mb-4" />
@@ -127,10 +133,19 @@ export default function Step2({ initialData, onNext, onUpdate }: Props) {
             ))}
           </div>
 
-          <div className="text-right mb-10">
-            <Button type="secondary" size="sm" onClick={() => fetchNames(true)}>
+          <div className="flex items-center justify-between mb-10">
+            <Button
+              type="secondary"
+              size="sm"
+              onClick={() => fetchNames(true)}
+              disabled={regenerationsLeft <= 0}
+            >
               Regenerate Suggestions
             </Button>
+            <p className="text-sm text-gray-400">
+              {regenerationsLeft} {regenerationsLeft === 1 ? "try" : "tries"}{" "}
+              left
+            </p>
           </div>
 
           <div className="mb-12">
@@ -171,7 +186,7 @@ const defaultOnboardingData: OnboardingData = {
   selected_color_palette: [],
   logo_style_options: ["Minimal", "Playful", "Bold"],
   selected_logo_style: "",
-  selected_logo_id: "",
+  selected_logo_url: "",
   services: [],
   tools: [],
   slogan: "",
