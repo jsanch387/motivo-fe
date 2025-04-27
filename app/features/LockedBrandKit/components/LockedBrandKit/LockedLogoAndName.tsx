@@ -26,7 +26,7 @@ export default function LockedLogoAndName({
               src={logoUrl}
               alt="Locked Logo"
               fill
-              className="object-contain blur-[2px] opacity-60"
+              className="object-contain blur-[2px] opacity-60 bg-white"
               unoptimized
             />
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">

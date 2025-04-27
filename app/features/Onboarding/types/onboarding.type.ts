@@ -24,6 +24,7 @@ export type OnboardingData = {
   logo_style_options: string[];
   selected_logo_style: string;
   selected_logo_url: string;
+  selected_logo_image_data?: string; // base64, temporary
 
   // Step 5
   services: Service[];

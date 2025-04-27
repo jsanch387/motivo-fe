@@ -1,13 +1,11 @@
-// ServicesSection.tsx
-
 "use client";
 
 import { useState } from "react";
 import AddServiceForm from "./AddServiceForm";
 import ServiceCardEditable from "./ServiceCardEditable";
-import ServiceTabs from "./ServiceTabs";
 import ServiceCardView from "./ServiceCardView";
 import ServiceCardLocked from "./ServiceCardLocked";
+import ServiceTabs from "./ServiceTabs";
 
 interface Service {
   name: string;
@@ -18,7 +16,7 @@ interface Service {
 interface Props {
   user_services: Service[];
   suggested_services: Service[];
-  isLockedPreview?: boolean; // ← NEW prop
+  isLockedPreview?: boolean;
 }
 
 export default function ServicesSection({
@@ -31,18 +29,17 @@ export default function ServicesSection({
 
   const [tab, setTab] = useState<"user" | "ai">(showUserTab ? "user" : "ai");
 
+  const [services, setServices] = useState<Service[]>(user_services);
   const visibleSuggested = isLockedPreview
     ? suggested_services.slice(0, 2)
     : suggested_services;
 
-  const servicesState = useState<Service[]>(user_services);
-  const [services, setServices] = servicesState;
-
   const activeServices = tab === "user" ? services : visibleSuggested;
 
+  // Only apply locked placeholders if locked preview is active and we're on the AI tab
   const lockedCount =
     isLockedPreview && tab === "ai"
-      ? Math.max(0, 6 - visibleSuggested.length - user_services.length)
+      ? Math.max(0, 6 - visibleSuggested.length)
       : 0;
 
   const helperText =
@@ -57,7 +54,7 @@ export default function ServicesSection({
       <h3 className="text-xl font-semibold text-white mb-4">Services</h3>
 
       <div className="bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-6 sm:px-6 sm:py-8">
-        {/* Tabs + Helper Text */}
+        {/* Tabs + helper text */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
           <div className="space-y-2">
             <ServiceTabs
@@ -70,7 +67,7 @@ export default function ServicesSection({
           </div>
         </div>
 
-        {/* Services Grid */}
+        {/* Grid of services */}
         <div className="grid sm:grid-cols-2 gap-4">
           {activeServices.map((service, i) =>
             tab === "user" ? (
@@ -93,7 +90,7 @@ export default function ServicesSection({
                     setServices(next);
                   }}
                   onDelete={(idx) =>
-                    setServices(services.filter((_, i) => i !== idx))
+                    setServices(services.filter((_, j) => j !== idx))
                   }
                 />
               )
@@ -107,7 +104,7 @@ export default function ServicesSection({
             )
           )}
 
-          {/* 🔒 Locked slots for suggestions */}
+          {/* Locked AI suggestion placeholders */}
           {isLockedPreview &&
             tab === "ai" &&
             Array.from({ length: lockedCount }).map((_, i) => (
@@ -115,7 +112,7 @@ export default function ServicesSection({
             ))}
         </div>
 
-        {/* Add Service Form (only if editable) */}
+        {/* Add form (only in editable user tab) */}
         {!isLockedPreview && tab === "user" && (
           <AddServiceForm
             onAdd={(newService) =>

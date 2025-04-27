@@ -25,7 +25,7 @@ export default function WelcomeBanner({ status }: Props) {
   } else if (status === "completed") {
     title = "Starter Kit Complete! You’re ready to launch.";
     subtitle =
-      "Everything’s set. You can view, edit, or download your full kit anytime.";
+      "Your brand kit and flyer are ready. You’re all set to start building your business.";
     buttonText = "View My Kit";
   }
 

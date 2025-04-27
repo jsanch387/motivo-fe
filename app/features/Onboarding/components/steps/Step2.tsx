@@ -24,7 +24,7 @@ export default function Step2({ initialData, onNext, onUpdate }: Props) {
     initialData.business_name_suggestions || []
   );
   const [selected, setSelected] = useState<string | null>(
-    initialData.selected_business_name || null
+    initialData.selected_business_name || initialData.custom_name || null
   );
   const [customName, setCustomName] = useState(initialData.custom_name || "");
   const [loading, setLoading] = useState(false);
@@ -83,7 +83,7 @@ export default function Step2({ initialData, onNext, onUpdate }: Props) {
 
     const updatedData: Partial<OnboardingData> = {
       business_name_suggestions: nameOptions,
-      selected_business_name: selected || "",
+      selected_business_name: finalName,
       custom_name: customName || "",
       current_step: 3,
     };
