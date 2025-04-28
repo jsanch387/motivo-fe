@@ -15,7 +15,7 @@ export default function PaidKitAndFlyer({ brandKit, flyerUrl }: Props) {
   const [view, setView] = useState<"kit" | "flyer">("kit");
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-6">
+    <div className="max-w-6xl mx-auto sm:px-4 md:px-0 space-y-6">
       {/* Tabs */}
       <BrandKitTabs currentView={view} onTabChange={setView} />
 
