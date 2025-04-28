@@ -15,7 +15,7 @@ interface Props {
 
 export default function BusinessInfoCard({
   name,
-  slogan,
+  // slogan,
   serviceType,
   logoUrl,
 }: Props) {
@@ -47,7 +47,12 @@ export default function BusinessInfoCard({
         {/* Logo & Download */}
         <div className="relative w-30 h-30 flex-shrink-0 rounded-xl bg-zinc-800 border border-gray-700 overflow-hidden flex items-center justify-center">
           {logoUrl ? (
-            <Image src={logoUrl} alt="Logo" fill className="object-contain" />
+            <Image
+              src={logoUrl}
+              alt="Logo"
+              fill
+              className="object-contain bg-white"
+            />
           ) : (
             <span className="text-gray-500 text-sm font-bold">LOGO</span>
           )}

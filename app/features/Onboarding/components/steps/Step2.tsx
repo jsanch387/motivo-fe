@@ -37,6 +37,7 @@ export default function Step2({ initialData, onNext, onUpdate }: Props) {
       hasFetchedRef.current = true;
       fetchNames();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchNames = async (isRegenerate = false) => {
@@ -106,7 +107,7 @@ export default function Step2({ initialData, onNext, onUpdate }: Props) {
   return (
     <OnboardingCard
       title="Pick a business name"
-      subtext="Choose a name that fits your vibe. You can enter your own or pick from our AI suggestions."
+      subtext="Choose a name that fits your vibe. You can enter your own or pick from our suggestions."
     >
       {loading ? (
         <div className="flex flex-col items-center justify-center min-h-[200px]">

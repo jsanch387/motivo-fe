@@ -7,6 +7,7 @@ import { purchaseBrandKit } from "../../../Onboarding/api/purchaseBrandKit";
 
 export default function LockedKitFooter() {
   const [loading, setLoading] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [success, setSuccess] = useState(false);
 
   const handlePurchase = async () => {
@@ -38,7 +39,7 @@ export default function LockedKitFooter() {
 
         {/* Button */}
         <Button size="lg" onClick={handlePurchase} disabled={loading}>
-          {loading ? "Unlocking..." : "Unlock Brand Kit – $29"}
+          {loading ? "Unlocking..." : "Unlock Brand Kit – $19"}
         </Button>
 
         {/* Confirmation message */}

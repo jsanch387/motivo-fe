@@ -1,7 +1,7 @@
 "use client";
 
-import BrandKitDashboardDisplay from "../BrandKitDashboardDisplay/BrandKitDashboardDisplay";
-import LockedKitAndFlyer from "../LockedBrandKit/LockedKitAndFlyer";
+import PaidKitAndFlyer from "../BrandKit/components/PaidBrandKit/PaidKitAndFlyer";
+import LockedKitAndFlyer from "../BrandKit/LockedKitAndFlyer";
 import { GetOnboardingResponse } from "./api/fetchOnboardingStatusWithData";
 import OnboardingFlow from "./OnboardingFlow";
 
@@ -11,9 +11,13 @@ export default function StarterKitEntryPoint({
   serverData: GetOnboardingResponse;
 }) {
   console.log("serverData", serverData);
+
   if (serverData.brand_kit_status === "completed" && serverData.brand_kit) {
     return serverData.brand_kit.is_paid ? (
-      <BrandKitDashboardDisplay brandKit={serverData.brand_kit} />
+      <PaidKitAndFlyer
+        brandKit={serverData.brand_kit}
+        flyerUrl={serverData.flyer_url ?? null}
+      />
     ) : (
       <LockedKitAndFlyer
         brandKit={serverData.brand_kit}

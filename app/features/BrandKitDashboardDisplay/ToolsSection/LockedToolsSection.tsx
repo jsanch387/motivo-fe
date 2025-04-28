@@ -45,7 +45,13 @@ export default function LockedToolsSection({
         {/* Tools list */}
         <ul className="divide-y divide-zinc-800 border border-zinc-800 rounded-lg overflow-hidden max-h-[280px] overflow-y-auto custom-scrollbar">
           {visibleTools.map((tool, i) => (
-            <ToolCardView key={`${tab}-${i}`} tool={tool} />
+            <ToolCardView
+              key={`${tab}-${i}`}
+              tool={{
+                ...tool,
+                source: tool.source || (isAiTab ? "ai" : "user"), // 🚨 FORCE source to exist
+              }}
+            />
           ))}
 
           {isAiTab &&

@@ -39,7 +39,7 @@ export default function LockedKitAndFlyer({
           <p className="text-gray-300 text-sm">Generating your flyer...</p>
         </div>
       ) : flyerUrl ? (
-        <FlyerPreview flyerUrl={flyerUrl} />
+        <FlyerPreview flyerUrl={flyerUrl} isPaid={brandKit.is_paid} />
       ) : flyerError ? (
         <div className="flex flex-col justify-center items-center space-y-4 text-center">
           <p className="text-red-500 text-sm">

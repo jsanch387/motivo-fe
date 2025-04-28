@@ -18,7 +18,6 @@ type Props = {
 interface Tool {
   id: number;
   name: string;
-  checked: boolean;
 }
 
 export default function Step6({ initialData, onNext, onUpdate }: Props) {
@@ -32,7 +31,6 @@ export default function Step6({ initialData, onNext, onUpdate }: Props) {
         (tool, i) => ({
           id: i + 1,
           name: typeof tool === "string" ? tool : tool.name,
-          checked: false,
         })
       );
       setTools(hydrated);
@@ -40,22 +38,13 @@ export default function Step6({ initialData, onNext, onUpdate }: Props) {
     }
   }, [initialData.tools]);
 
-  const toggleCheck = (id: number) => {
-    setTools((prev) =>
-      prev.map((t) => (t.id === id ? { ...t, checked: !t.checked } : t))
-    );
-  };
-
   const handleRemove = (id: number) => {
     setTools((prev) => prev.filter((t) => t.id !== id));
   };
 
   const handleAdd = () => {
     if (!newTool.trim()) return;
-    setTools((prev) => [
-      ...prev,
-      { id: nextId, name: newTool.trim(), checked: false },
-    ]);
+    setTools((prev) => [...prev, { id: nextId, name: newTool.trim() }]);
     setNextId((prev) => prev + 1);
     setNewTool("");
   };
@@ -80,36 +69,25 @@ export default function Step6({ initialData, onNext, onUpdate }: Props) {
       });
     }
 
-    onNext(); // Step 7 will handle the loading + brand kit generation
+    onNext();
   };
 
   return (
     <OnboardingCard
       title="Add your tools & gear"
-      subtext="Do you have any tools already? If not, no worries! We will generate a list of tools for you."
+      subtext="Do you have any tools already? If not, no worries! We’ll generate a list of tools for you."
     >
+      {/* List of Added Tools */}
       <div className="space-y-4 mb-10">
         {tools.map((tool) => (
           <div
             key={tool.id}
-            className="flex items-center gap-4 px-4 py-3 bg-zinc-900 border border-zinc-700 rounded-xl"
+            className="flex items-center justify-between px-4 py-3 bg-zinc-900 border border-zinc-700 rounded-xl"
           >
-            <input
-              type="checkbox"
-              checked={tool.checked}
-              onChange={() => toggleCheck(tool.id)}
-              className="accent-blue-500 w-5 h-5"
-            />
-            <span
-              className={`flex-1 text-base ${
-                tool.checked ? "line-through text-gray-500" : "text-white"
-              }`}
-            >
-              {tool.name}
-            </span>
+            <span className="text-white text-base">{tool.name}</span>
             <button
               onClick={() => handleRemove(tool.id)}
-              className="text-gray-500 hover:text-red-500"
+              className="text-gray-400 hover:text-red-500 transition-colors cursor-pointer"
             >
               <Trash2 size={18} />
             </button>
@@ -117,8 +95,8 @@ export default function Step6({ initialData, onNext, onUpdate }: Props) {
         ))}
       </div>
 
-      {/* Add Tool Input */}
-      <div className="mb-10">
+      {/* Add New Tool */}
+      <div className="mb-10 space-y-3">
         <TextInput
           label="Add a new tool"
           name="newTool"
@@ -126,14 +104,14 @@ export default function Step6({ initialData, onNext, onUpdate }: Props) {
           onChange={(e) => setNewTool(e.target.value)}
           placeholder="e.g. Water Tank, Polisher"
         />
-
-        <div className="mt-3">
+        <div>
           <Button type="secondary" size="sm" onClick={handleAdd}>
             + Add Tool
           </Button>
         </div>
       </div>
 
+      {/* Continue Button */}
       <div className="text-right">
         <Button type="primary" size="lg" onClick={handleContinue}>
           Generate Brand Kit

@@ -8,8 +8,9 @@ import { fetchBrandKit } from "../../api/fetchBrandKit";
 import { BrandKit } from "../../types/brandKit.type";
 import { OnboardingData } from "../../types/onboarding.type";
 import { generateFlyer } from "../../api/generateFlyer";
-import LockedKitAndFlyer from "@/app/features/LockedBrandKit/LockedKitAndFlyer";
+import LockedKitAndFlyer from "@/app/features/BrandKit/LockedKitAndFlyer";
 import Button from "@/app/components/ui/Button";
+import LoadingIndicator from "@/app/components/ui/LoadingIndicator";
 
 type Props = {
   initialData: GetOnboardingResponse;
@@ -31,6 +32,7 @@ export default function Step7({ initialData, onUpdate }: Props) {
 
   useEffect(() => {
     loadEverything();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadEverything = async () => {
@@ -98,10 +100,7 @@ export default function Step7({ initialData, onUpdate }: Props) {
   return (
     <div className="space-y-6">
       {loading ? (
-        <div className="min-h-[300px] flex flex-col justify-center items-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent mb-4" />
-          <p className="text-gray-300 text-sm">Building your kit…</p>
-        </div>
+        <LoadingIndicator />
       ) : kit ? (
         <div className="space-y-4">
           <LockedKitAndFlyer
