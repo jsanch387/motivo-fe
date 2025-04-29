@@ -4,7 +4,6 @@ import LockedBrandColors from "./LockedBrandColors";
 import LockedLogoAndName from "./LockedLogoAndName";
 import { BrandKit } from "../../../Onboarding/types/brandKit.type";
 import LockedKitFooter from "./LockedKitFooter";
-import OnboardingCard from "@/app/features/Onboarding/components/OnboardingCard";
 import ServicesSection from "@/app/features/BrandKitDashboardDisplay/ServicesSection/ServicesSection";
 import ToolsSection from "@/app/features/BrandKitDashboardDisplay/ToolsSection/ToolsSection";
 
@@ -14,12 +13,8 @@ interface Props {
 
 export default function LockedBrandKit({ brandKit }: Props) {
   return (
-    <div className="max-w-6xl mx-auto sm:mt-0">
-      <OnboardingCard
-        title=""
-        showDivider={false}
-        className="sm:bg-zinc-900 sm:border sm:rounded-xl bg-transparent border-0"
-      >
+    <div className="max-w-6xl mx-auto mt-4 sm:mt-0">
+      <div className="w-full mx-auto px-4 py-5 sm:bg-zinc-900 sm:border sm:border-zinc-800 sm:rounded-xl sm:px-6 sm:py-7">
         <div className="space-y-12">
           <LockedLogoAndName
             name={brandKit.business_name}
@@ -41,7 +36,7 @@ export default function LockedBrandKit({ brandKit }: Props) {
         </div>
 
         <LockedKitFooter />
-      </OnboardingCard>
+      </div>
     </div>
   );
 }

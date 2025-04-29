@@ -22,7 +22,7 @@ export default function OnboardingCard({
     <div
       className={clsx(
         "w-full mx-auto rounded-xl px-4 py-5 sm:px-6 sm:py-7",
-        "bg-transparent border-0 sm:bg-zinc-900 sm:border sm:border-zinc-800",
+        "bg-zinc-900 border border-zinc-800", // background on all devices now
         className
       )}
     >

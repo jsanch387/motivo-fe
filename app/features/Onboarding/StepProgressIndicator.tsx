@@ -1,5 +1,6 @@
 "use client";
 
+import Card from "@/app/components/ui/Card";
 import { CheckIcon } from "@heroicons/react/24/solid";
 import clsx from "clsx";
 import { useEffect, useRef } from "react";
@@ -48,7 +49,7 @@ export default function StepProgressIndicator({
 
   return (
     <div className="w-full max-w-5xl mx-auto mb-10">
-      <div className="bg-zinc-900/80 border border-zinc-800 backdrop-blur-sm rounded-xl px-4 sm:px-6 py-6 shadow-md">
+      <Card padded className="shadow-md">
         <div className="mb-4 text-center text-sm text-gray-400 font-medium">
           Step {currentStep} of {totalSteps}
         </div>
@@ -101,7 +102,6 @@ export default function StepProgressIndicator({
                     {label}
                   </span>
 
-                  {/* Progress line (only on desktop) */}
                   {step !== totalSteps && (
                     <div className="hidden sm:block absolute top-3 left-1/2 w-full h-px bg-zinc-700 z-0 sm:left-[calc(50%+18px)] sm:w-[calc(100%-36px)]" />
                   )}
@@ -110,7 +110,7 @@ export default function StepProgressIndicator({
             })}
           </div>
         </div>
-      </div>
+      </Card>
     </div>
   );
 }

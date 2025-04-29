@@ -2,6 +2,7 @@
 
 import Button from "@/app/components/ui/Button";
 import { CheckCircle } from "lucide-react";
+import Card from "@/app/components/ui/Card"; // ✅ your shared Card component
 
 export default function StarterKitProgress({
   progress,
@@ -13,9 +14,11 @@ export default function StarterKitProgress({
   onClick: () => void;
 }) {
   return (
-    <div className="bg-[rgba(255,255,255,0.02)] border border-gray-800 rounded-xl p-6 mb-10 shadow-sm">
+    <Card className="mb-10">
+      {" "}
+      {/* ✅ Replaces the custom wrapper */}
       <div className="flex items-center justify-between mb-2">
-        <h2 className="font-semibold">Your Starter Kit Progress</h2>
+        <h2 className="font-semibold">Your Brand Kit Progress</h2>
         <span className="text-sm text-gray-400 flex items-center gap-1">
           {isCompleted ? (
             <>
@@ -39,9 +42,9 @@ export default function StarterKitProgress({
       </div>
       <div className="mt-4 text-right">
         <Button type="secondary" size="sm" onClick={onClick}>
-          Go to Starter Kit
+          Go to Brand Kit
         </Button>
       </div>
-    </div>
+    </Card>
   );
 }
