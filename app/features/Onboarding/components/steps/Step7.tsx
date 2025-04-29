@@ -109,6 +109,7 @@ export default function Step7({ initialData, onUpdate }: Props) {
             flyerLoading={flyerLoading}
             flyerError={flyerError}
             onRetryFlyer={loadFlyer}
+            disablePadding={true}
           />
         </div>
       ) : (

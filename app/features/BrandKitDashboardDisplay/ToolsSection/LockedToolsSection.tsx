@@ -23,7 +23,7 @@ export default function LockedToolsSection({
   const lockedCount = isAiTab ? Math.max(0, 8 - suggested_tools.length) : 0;
 
   const helperText = isAiTab
-    ? "These are a few tools we recommend. Unlock to see the full toolkit."
+    ? "These are a few tools we recommend to get you started."
     : "These are the tools you’ve added to your kit.";
 
   return (

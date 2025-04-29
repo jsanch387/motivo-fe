@@ -14,6 +14,7 @@ type Props = {
   flyerLoading?: boolean;
   flyerError?: boolean;
   onRetryFlyer?: () => void;
+  disablePadding?: boolean;
 };
 
 export default function LockedKitAndFlyer({
@@ -22,6 +23,7 @@ export default function LockedKitAndFlyer({
   flyerLoading,
   flyerError,
   onRetryFlyer,
+  disablePadding = false,
 }: Props) {
   const [view, setView] = useState<"kit" | "flyer">("kit");
 
@@ -32,7 +34,7 @@ export default function LockedKitAndFlyer({
 
       {/* Content */}
       {view === "kit" ? (
-        <LockedBrandKit brandKit={brandKit} />
+        <LockedBrandKit brandKit={brandKit} disablePadding={disablePadding} />
       ) : flyerLoading ? (
         <div className="min-h-[300px] flex flex-col justify-center items-center text-center">
           <div className="animate-spin rounded-full h-10 w-10 border-4 border-blue-500 border-t-transparent mb-4" />
