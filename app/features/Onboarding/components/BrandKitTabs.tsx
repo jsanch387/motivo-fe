@@ -7,7 +7,7 @@ interface Props {
 
 export default function BrandKitTabs({ currentView, onTabChange }: Props) {
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center mt-4 sm:mt-0">
       <div className="inline-flex bg-zinc-900 border border-zinc-700 rounded-full p-1">
         {[
           { label: "Brand Kit", key: "kit" },
