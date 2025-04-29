@@ -14,6 +14,9 @@ const urbanist = Urbanist({
 export const metadata = {
   title: "Motivo",
   description: "Launch your business fast",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({

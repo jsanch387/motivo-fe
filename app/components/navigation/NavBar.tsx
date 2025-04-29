@@ -39,7 +39,7 @@ export default function Navbar() {
           {/* Right side auth buttons */}
           <div className="flex items-center space-x-4">
             {user ? (
-              <Button href={ROUTES.BRAND_KIT} type="primary" size="sm">
+              <Button href={ROUTES.DASHBOARD} type="primary" size="sm">
                 Dashboard
               </Button>
             ) : (

@@ -9,8 +9,11 @@ const urbanist = Urbanist({
 });
 
 export const metadata = {
-  title: "Dashboard | Motivo",
-  description: "Your business command center",
+  title: "Motivo",
+  description: "Launch your business fast",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function DashboardLayout({
