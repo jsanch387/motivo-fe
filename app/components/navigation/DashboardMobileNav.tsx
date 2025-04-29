@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { sideNavLinks } from "./SideNavLinks";
 import { logout } from "@/lib/supabase/client";
 import { cn } from "@/app/utils/utils";
+import Image from "next/image";
 
 export default function DashboardMobileNav() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -24,12 +25,15 @@ export default function DashboardMobileNav() {
   return (
     <>
       {/* Top bar */}
-      <nav className="flex items-center justify-between px-4 py-4 bg-zinc-900 border-b border-zinc-800 md:hidden">
-        <Link
-          href="/dashboard"
-          className="text-2xl font-extrabold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent"
-        >
-          Motivo
+      <nav className="flex items-center justify-between px-4 bg-zinc-900 border-b border-zinc-800 md:hidden">
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/mento-logo.png" // <-- Update this path
+            alt="Motivo Logo"
+            width={50} // <-- Set width and height manually
+            height={50}
+            priority // <-- Optional: loads it faster (good for logo)
+          />
         </Link>
         <button
           onClick={() => setMenuOpen(true)}
@@ -43,12 +47,15 @@ export default function DashboardMobileNav() {
       {/* Slide-in mobile menu */}
       {menuOpen && (
         <div className="fixed inset-0 z-50 bg-zinc-900 backdrop-blur-md md:hidden">
-          <div className="flex justify-between items-center px-4 py-4 border-b border-zinc-800">
-            <Link
-              href="/dashboard"
-              className="text-2xl font-extrabold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent"
-            >
-              Motivo
+          <div className="flex justify-between items-center px-4 border-b border-zinc-800">
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/mento-logo.png" // <-- Update this path
+                alt="Motivo Logo"
+                width={50} // <-- Set width and height manually
+                height={50}
+                priority // <-- Optional: loads it faster (good for logo)
+              />
             </Link>
             <button
               onClick={() => setMenuOpen(false)}

@@ -6,6 +6,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useAuthStore } from "@/app/features/Authentication/store/useAuthStore";
 import { ROUTES } from "@/lib/constants/routes";
 import Button from "../ui/Button";
+import Image from "next/image";
 
 export default function LandingMobileNav() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -14,12 +15,15 @@ export default function LandingMobileNav() {
   return (
     <>
       {/* Top Nav Bar */}
-      <nav className="flex items-center justify-between px-4 py-4 bg-zinc-900 border-b border-zinc-800 md:hidden">
-        <Link
-          href="/"
-          className="text-2xl font-extrabold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent"
-        >
-          Motivo
+      <nav className="flex items-center justify-between px-4  bg-zinc-900 border-b border-zinc-800 md:hidden">
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/mento-logo.png" // <-- Update this path
+            alt="Motivo Logo"
+            width={50} // <-- Set width and height manually
+            height={50}
+            priority // <-- Optional: loads it faster (good for logo)
+          />
         </Link>
         <button
           onClick={() => setMenuOpen(true)}
@@ -34,13 +38,15 @@ export default function LandingMobileNav() {
       {menuOpen && (
         <div className="fixed inset-0 z-50 bg-zinc-900 backdrop-blur-md md:hidden overflow-y-auto">
           {/* Header */}
-          <div className="flex items-center justify-between px-4 py-4 border-b border-zinc-800">
-            <Link
-              href="/"
-              onClick={() => setMenuOpen(false)}
-              className="text-2xl font-extrabold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent"
-            >
-              Motivo
+          <div className="flex items-center justify-between px-4  border-b border-zinc-800">
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/mento-logo.png" // <-- Update this path
+                alt="Motivo Logo"
+                width={50} // <-- Set width and height manually
+                height={50}
+                priority // <-- Optional: loads it faster (good for logo)
+              />
             </Link>
             <button
               onClick={() => setMenuOpen(false)}

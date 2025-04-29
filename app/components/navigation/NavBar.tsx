@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import Button from "../ui/Button";
 import { useAuthStore } from "../../features/Authentication/store/useAuthStore";
 import { ROUTES } from "@/lib/constants/routes";
+import Image from "next/image";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -16,14 +17,16 @@ export default function Navbar() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link
-              href="/"
-              className="text-2xl font-extrabold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent"
-            >
-              Motivo
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/mento-logo.png" // <-- Update this path
+                alt="Motivo Logo"
+                width={70} // <-- Set width and height manually
+                height={70}
+                priority // <-- Optional: loads it faster (good for logo)
+              />
             </Link>
           </div>
-
           {/* Center Links */}
           <div className="hidden md:flex space-x-8">
             <NavLink href="/" label="Home" pathname={pathname} />
