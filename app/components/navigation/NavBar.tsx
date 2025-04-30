@@ -29,11 +29,9 @@ export default function Navbar() {
           </div>
           {/* Center Links */}
           <div className="hidden md:flex space-x-8">
-            <NavLink href="/" label="Home" pathname={pathname} />
-            <NavLink href="/about" label="About" pathname={pathname} />
-            {user && (
-              <NavLink href="/blogs" label="Blogs" pathname={pathname} />
-            )}
+            <NavLink href={ROUTES.HOME} label="Home" pathname={pathname} />
+            <NavLink href={ROUTES.ABOUT} label="About" pathname={pathname} />
+            {/* <NavLink href={ROUTES.BLOGS} label="Blogs" pathname={pathname} /> */}
           </div>
 
           {/* Right side auth buttons */}
