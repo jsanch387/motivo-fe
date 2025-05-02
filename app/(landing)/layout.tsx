@@ -5,6 +5,7 @@ import MobileNav from "../components/navigation/LandingMobileNav";
 import AuthInitializer from "../features/Authentication/AuthInitializer";
 import Footer from "../features/landing/Footer";
 import "../globals.css";
+import { Analytics } from "@vercel/analytics/react";
 
 const urbanist = Urbanist({
   subsets: ["latin"],
@@ -40,7 +41,9 @@ export default function RootLayout({
         </div>
 
         {/* Main content */}
-        <main className="flex-1">{children}</main>
+        <main className="flex-1">
+          {children} <Analytics />
+        </main>
 
         {/* Footer always at bottom */}
         <Footer />

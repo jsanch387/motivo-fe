@@ -2,6 +2,7 @@ import { Urbanist } from "next/font/google";
 import SideNav from "@/app/components/navigation/SideNav";
 import DashboardMobileNav from "../components/navigation/DashboardMobileNav";
 import "../globals.css";
+import { Analytics } from "@vercel/analytics/react";
 
 const urbanist = Urbanist({
   subsets: ["latin"],
@@ -30,11 +31,15 @@ export default function DashboardLayout({
         {/* Desktop Sidebar */}
         <div className="hidden md:flex min-h-screen">
           <SideNav />
-          <main className="ml-64 w-full p-6">{children}</main>
+          <main className="ml-64 w-full p-6">
+            {children} <Analytics />
+          </main>
         </div>
 
         {/* Mobile Content */}
-        <div className="block md:hidden">{children}</div>
+        <div className="block md:hidden">
+          {children} <Analytics />
+        </div>
       </body>
     </html>
   );

@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import "../globals.css";
 import Background from "../components/ui/Background";
+import { Analytics } from "@vercel/analytics/react";
 
 export default function AuthLayout({ children }: { children: ReactNode }) {
   return (
@@ -11,7 +12,9 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
           <Background />
 
           {/* Card wraps here */}
-          <div className="flex w-full max-w-md flex-col">{children}</div>
+          <div className="flex w-full max-w-md flex-col">
+            {children} <Analytics />
+          </div>
         </div>
       </body>
     </html>
