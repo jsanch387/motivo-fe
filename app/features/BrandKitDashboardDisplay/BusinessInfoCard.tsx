@@ -43,7 +43,7 @@ export default function BusinessInfoCard({
 
   return (
     <StyledSectionCard>
-      <div className="flex flex-col sm:flex-row sm:items-center gap-6">
+      <div className="flex flex-row items-center gap-4 sm:gap-6">
         {/* Logo & Download */}
         <div className="relative w-30 h-30 flex-shrink-0 rounded-xl bg-zinc-800 border border-gray-700 overflow-hidden flex items-center justify-center">
           {logoUrl ? (

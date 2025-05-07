@@ -59,8 +59,6 @@ export default function Step4({ initialData, onNext, onUpdate }: Props) {
     // ✅ Upload to Supabase if base64 format
     if (selectedLogo.startsWith("data:image")) {
       try {
-        console.log("🚀 Uploading base64 image to /api/upload-logo");
-
         const res = await fetch("/api/upload-logo", {
           method: "POST",
           headers: { "Content-Type": "application/json" },

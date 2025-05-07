@@ -124,7 +124,7 @@ export default function Step1({ initialData, onNext, onUpdate }: Props) {
             !form.service_type || !form.location || !form.readiness_level
           }
         >
-          Start Brand Kit
+          Choose a Name
         </Button>
       </div>
     </OnboardingCard>

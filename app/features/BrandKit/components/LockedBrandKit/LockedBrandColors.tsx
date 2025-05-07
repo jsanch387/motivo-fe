@@ -1,4 +1,5 @@
 "use client";
+import { LockClosedIcon } from "@heroicons/react/24/solid";
 
 interface Props {
   colors: string[];
@@ -21,8 +22,9 @@ export default function LockedBrandColors({ colors }: Props) {
           </div>
         ))}
       </div>
-      <p className="text-sm text-gray-500">
-        🔒 Unlock to copy and export your color palette
+      <p className="text-sm text-gray-500 flex items-center gap-1">
+        <LockClosedIcon className="w-4 h-4 text-gray-500" />
+        Unlock to copy and export your color palette
       </p>
     </div>
   );

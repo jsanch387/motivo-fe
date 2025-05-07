@@ -7,7 +7,6 @@ interface Props {
 }
 
 export default function DashboardGettingStarted({ data }: Props) {
-  console.log("DashboardGettingStarted", data);
   return (
     <main className="px-6 py-10 space-y-10">
       <WelcomeBanner status={data.onboardingStatus} />

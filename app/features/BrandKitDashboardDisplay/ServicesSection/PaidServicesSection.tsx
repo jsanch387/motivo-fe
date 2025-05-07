@@ -1,8 +1,5 @@
 "use client";
 
-import { useState } from "react";
-import AddServiceForm from "./AddServiceForm";
-import ServiceCardEditable from "./ServiceCardEditable";
 import ServiceCardView from "./ServiceCardView";
 import ServiceTabs from "./ServiceTabs";
 
@@ -21,8 +18,6 @@ export default function PaidServicesSection({
   user_services,
   suggested_services,
 }: Props) {
-  const [services, setServices] = useState<Service[]>(user_services);
-
   return (
     <section className="mb-10">
       <h3 className="text-xl font-semibold text-white mb-4">Services</h3>
@@ -35,32 +30,24 @@ export default function PaidServicesSection({
           showAiTab
         />
 
-        {/* Editable user services */}
+        {/* User services (read-only) */}
         <div className="grid sm:grid-cols-2 gap-4 mb-6">
-          {services.map((s, i) => (
-            <ServiceCardEditable
+          {user_services.map((s, i) => (
+            <ServiceCardView
               key={`user-${i}`}
-              index={i}
               name={s.name}
               price={s.price}
-              onUpdate={(idx, updated) => {
-                const next = [...services];
-                next[idx] = { ...next[idx], ...updated };
-                setServices(next);
-              }}
-              onDelete={(idx) =>
-                setServices(services.filter((_, j) => j !== idx))
-              }
+              source="user"
             />
           ))}
         </div>
 
-        {/* Add new service */}
-        <AddServiceForm
+        {/* Add form removed */}
+        {/* <AddServiceForm
           onAdd={(newService) =>
             setServices([...services, { ...newService, source: "user" }])
           }
-        />
+        /> */}
 
         {/* Suggested AI services */}
         <div className="mt-10 grid sm:grid-cols-2 gap-4">

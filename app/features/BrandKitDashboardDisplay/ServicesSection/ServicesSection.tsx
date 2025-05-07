@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import AddServiceForm from "./AddServiceForm";
-import ServiceCardEditable from "./ServiceCardEditable";
+// import AddServiceForm from "./AddServiceForm";
+// import ServiceCardEditable from "./ServiceCardEditable";
 import ServiceCardView from "./ServiceCardView";
 import ServiceCardLocked from "./ServiceCardLocked";
 import ServiceTabs from "./ServiceTabs";
@@ -29,14 +29,13 @@ export default function ServicesSection({
 
   const [tab, setTab] = useState<"user" | "ai">(showUserTab ? "user" : "ai");
 
-  const [services, setServices] = useState<Service[]>(user_services);
+  // const [services, setServices] = useState<Service[]>(user_services);
   const visibleSuggested = isLockedPreview
     ? suggested_services.slice(0, 2)
     : suggested_services;
 
-  const activeServices = tab === "user" ? services : visibleSuggested;
+  const activeServices = tab === "user" ? user_services : visibleSuggested;
 
-  // Only apply locked placeholders if locked preview is active and we're on the AI tab
   const lockedCount =
     isLockedPreview && tab === "ai"
       ? Math.max(0, 6 - visibleSuggested.length)
@@ -69,40 +68,14 @@ export default function ServicesSection({
 
         {/* Grid of services */}
         <div className="grid sm:grid-cols-2 gap-4">
-          {activeServices.map((service, i) =>
-            tab === "user" ? (
-              isLockedPreview ? (
-                <ServiceCardView
-                  key={`user-${i}`}
-                  name={service.name}
-                  price={service.price}
-                  source="user"
-                />
-              ) : (
-                <ServiceCardEditable
-                  key={`user-${i}`}
-                  index={i}
-                  name={service.name}
-                  price={service.price}
-                  onUpdate={(idx, updated) => {
-                    const next = [...services];
-                    next[idx] = { ...next[idx], ...updated };
-                    setServices(next);
-                  }}
-                  onDelete={(idx) =>
-                    setServices(services.filter((_, j) => j !== idx))
-                  }
-                />
-              )
-            ) : (
-              <ServiceCardView
-                key={`ai-${i}`}
-                name={service.name}
-                price={service.price}
-                source="ai"
-              />
-            )
-          )}
+          {activeServices.map((service, i) => (
+            <ServiceCardView
+              key={`${tab}-${i}`}
+              name={service.name}
+              price={service.price}
+              source={tab === "user" ? "user" : "ai"}
+            />
+          ))}
 
           {/* Locked AI suggestion placeholders */}
           {isLockedPreview &&
@@ -113,13 +86,13 @@ export default function ServicesSection({
         </div>
 
         {/* Add form (only in editable user tab) */}
-        {!isLockedPreview && tab === "user" && (
+        {/* {!isLockedPreview && tab === "user" && (
           <AddServiceForm
             onAdd={(newService) =>
               setServices([...services, { ...newService, source: "user" }])
             }
           />
-        )}
+        )} */}
       </div>
     </section>
   );

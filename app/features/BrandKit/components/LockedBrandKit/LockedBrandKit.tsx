@@ -30,7 +30,7 @@ export default function LockedBrandKit({
           <LockedLogoAndName
             name={brandKit.business_name}
             logoUrl={brandKit.logo_url}
-            slogan={brandKit.slogan}
+            // slogan={brandKit.slogan}
             serviceType={brandKit.service_type}
           />
           <LockedBrandColors colors={brandKit.brand_colors} />

@@ -14,20 +14,20 @@ export default function HeroSection() {
       {/* Heading & CTA */}
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight text-white mb-6">
-          Build Your Brand.
+          Look Professional.
           <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
             Launch with Confidence.
           </span>
         </h1>
         <p className="text-gray-400 text-lg sm:text-xl max-w-2xl mx-auto mb-10">
-          Everything you need to get your side hustle off the ground — from name
-          and logo to services, tools, and a custom flyer.
+          Everything you need to get your side business off the ground — from
+          name and logo to services, tools, and a custom flyer.
         </p>
 
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <Button href="/signup" type="primary" size="lg">
-            Get Started
+            Create Brand
           </Button>
           <Button href="/dashboard" type="secondary" size="lg">
             Dashboard

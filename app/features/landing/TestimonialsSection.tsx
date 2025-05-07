@@ -46,7 +46,7 @@ export default function TestimonialsSection() {
       {/* Heading */}
       <div className="max-w-6xl mx-auto text-center mb-16 px-4">
         <h2 className="text-3xl sm:text-4xl font-extrabold mb-4 text-white">
-          What Hustlers Are Saying
+          What Others Are Saying
         </h2>
         <p className="text-gray-400 text-lg max-w-2xl mx-auto">
           Join the growing community of side hustlers using Motivo to launch

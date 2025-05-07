@@ -8,6 +8,5 @@ export async function fetchOnboardingStatusWithData(): Promise<GetOnboardingResp
     "/onboarding/status"
   );
 
-  console.log("📡 [SSR] Onboarding status fetched:", data);
   return data;
 }

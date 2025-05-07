@@ -17,7 +17,7 @@ export default function LockedKitFooter() {
       window.location.href = url;
     } catch (err) {
       console.error("❌ Failed to purchase brand kit", err);
-      alert("Something went wrong. Try again.");
+      alert("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -29,35 +29,31 @@ export default function LockedKitFooter() {
         {/* Headline + Description */}
         <div className="space-y-3">
           <h4 className="text-white font-bold text-xl sm:text-2xl">
-            Unlock your full Brand Kit
+            Upgrade to Full Brand Kit Access
           </h4>
           <p className="text-sm sm:text-base text-gray-400">
-            Get access to your logo, color palette, flyer PDF, bonus services,
-            and tool recommendations — all editable after unlocking.
+            Unlock all assets including high-res logos, color palettes, flyer,
+            and premium tool and services recommendations.
           </p>
         </div>
 
         {/* Button */}
-        <Button size="lg" onClick={handlePurchase} disabled={loading}>
-          {loading ? "Unlocking..." : "Unlock Brand Kit – $19"}
+        <Button
+          size="lg"
+          onClick={handlePurchase}
+          disabled={loading}
+          className="mx-auto"
+        >
+          {loading ? "Processing..." : "Get Full Access – $19"}
         </Button>
 
-        {/* Confirmation message */}
+        {/* Success message */}
         {success && (
-          <p className="text-green-400 text-sm font-medium">
-            🎉 Brand Kit unlocked!
+          <p className="text-green-400 text-sm font-medium flex items-center justify-center gap-1">
+            <ExclamationTriangleIcon className="h-4 w-4" />
+            Brand Kit successfully unlocked!
           </p>
         )}
-
-        {/* Disclaimer */}
-        <div className="flex items-start justify-center text-gray-500 text-xs sm:text-sm gap-2 max-w-md mx-auto">
-          <ExclamationTriangleIcon className="h-4 w-4 text-yellow-400 mt-[2px]" />
-          <p>
-            Your brand kit will be stored for{" "}
-            <span className="text-white font-semibold">24 hours</span>. After
-            that, it may be deleted to free up space for new users.
-          </p>
-        </div>
       </div>
     </div>
   );

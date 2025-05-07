@@ -10,8 +10,6 @@ export default function StarterKitEntryPoint({
 }: {
   serverData: GetOnboardingResponse;
 }) {
-  console.log("serverData", serverData);
-
   if (serverData.brand_kit_status === "completed" && serverData.brand_kit) {
     return serverData.brand_kit.is_paid ? (
       <PaidKitAndFlyer

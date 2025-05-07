@@ -124,7 +124,7 @@ export default function Step3({ initialData, onNext, onUpdate }: Props) {
               onClick={handleContinue}
               disabled={selectedIdx === null}
             >
-              Continue
+              Choose a Logo
             </Button>
           </div>
         </>

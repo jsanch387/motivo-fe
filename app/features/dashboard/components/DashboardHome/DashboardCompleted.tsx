@@ -16,24 +16,6 @@ interface Props {
 }
 
 export default function DashboardCompleted({}: Props) {
-  // const quickActions = [
-  //   {
-  //     label: "Edit Brand Kit",
-  //     href: ROUTES.BRAND_KIT,
-  //     icon: <PencilSquareIcon className="w-5 h-5 text-blue-400" />,
-  //   },
-  //   {
-  //     label: "Add New Service",
-  //     href: ROUTES.BRAND_KIT,
-  //     icon: <PlusIcon className="w-5 h-5 text-green-400" />,
-  //   },
-  //   {
-  //     label: "View Your Flyer",
-  //     href: ROUTES.BRAND_KIT,
-  //     icon: <DocumentTextIcon className="w-5 h-5 text-purple-400" />,
-  //   },
-  // ];
-
   const nextSteps = [
     "Share your flyer on Instagram or Facebook.",
     "Send your flyer to friends, family, or neighbors.",
@@ -45,24 +27,6 @@ export default function DashboardCompleted({}: Props) {
   return (
     <main className="px-6 py-10 space-y-10">
       <WelcomeBanner status="completed" />
-
-      {/* ⚡ Quick Actions */}
-      {/* <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        {quickActions.map((action, i) => (
-          <Card
-            key={i}
-            padded
-            className="p-4 group hover:border-blue-500 transition cursor-pointer"
-          >
-            <a href={action.href} className="flex items-center gap-3">
-              {action.icon}
-              <span className="text-sm text-white group-hover:text-blue-400">
-                {action.label}
-              </span>
-            </a>
-          </Card>
-        ))}
-      </div> */}
 
       {/* 💡 Next Steps */}
       <Card>

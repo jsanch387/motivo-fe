@@ -30,7 +30,7 @@ export default function FlyerPreview({ flyerUrl, isPaid }: Props) {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-0">
+    <div className="max-w-6xl mx-auto px-4 sm:px-0">
       <div className="sm:bg-zinc-900 sm:border sm:border-zinc-800 sm:rounded-xl sm:px-6 sm:py-7 px-0 py-0">
         {/* Title + Download */}
         <div className="flex justify-between items-start mb-6 mt-4 sm:mt-0">

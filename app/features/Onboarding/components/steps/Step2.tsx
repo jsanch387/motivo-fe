@@ -166,7 +166,7 @@ export default function Step2({ initialData, onNext, onUpdate }: Props) {
               onClick={handleContinue}
               disabled={!selected && !customName}
             >
-              Continue
+              Choose Colors
             </Button>
           </div>
         </>
