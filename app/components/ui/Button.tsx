@@ -12,6 +12,8 @@ interface ButtonProps {
   onClick?: () => void;
   className?: string;
   disabled?: boolean;
+  icon?: ReactNode;
+  iconPosition?: "left" | "right";
 }
 
 export default function Button({
@@ -22,9 +24,11 @@ export default function Button({
   onClick,
   className,
   disabled = false,
+  icon,
+  iconPosition = "left",
 }: ButtonProps) {
   const base =
-    "font-semibold rounded-lg transition duration-200 ease-in-out cursor-pointer";
+    "font-semibold rounded-lg transition duration-200 ease-in-out cursor-pointer inline-flex items-center justify-center";
 
   const variant = {
     primary:
@@ -33,9 +37,15 @@ export default function Button({
   };
 
   const sizes = {
-    sm: "text-sm px-4 py-2",
-    md: "text-sm px-6 py-3",
-    lg: "text-base sm:text-lg px-8 py-4",
+    sm: "text-sm px-4 py-2 gap-1.5",
+    md: "text-sm px-6 py-3 gap-2",
+    lg: "text-base sm:text-lg px-8 py-4 gap-2.5",
+  };
+
+  const iconSizes = {
+    sm: "w-4 h-4",
+    md: "w-5 h-5",
+    lg: "w-6 h-6",
   };
 
   const combined = clsx(
@@ -47,17 +57,35 @@ export default function Button({
       "opacity-50 cursor-not-allowed hover:brightness-100 hover:bg-none hover:border-gray-700"
   );
 
+  const iconClasses = clsx(
+    iconSizes[size],
+    "flex-shrink-0",
+    disabled ? "opacity-70" : "opacity-90"
+  );
+
+  const renderContent = () => (
+    <>
+      {icon && iconPosition === "left" && (
+        <span className={clsx(iconClasses, "flex items-center")}>{icon}</span>
+      )}
+      <span className="flex items-center">{children}</span>
+      {icon && iconPosition === "right" && (
+        <span className={clsx(iconClasses, "flex items-center")}>{icon}</span>
+      )}
+    </>
+  );
+
   if (href) {
     return (
       <Link href={href} className={combined} aria-disabled={disabled}>
-        {children}
+        {renderContent()}
       </Link>
     );
   }
 
   return (
     <button onClick={onClick} className={combined} disabled={disabled}>
-      {children}
+      {renderContent()}
     </button>
   );
 }
