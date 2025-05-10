@@ -7,6 +7,7 @@ import Footer from "../features/landing/Footer";
 import "../globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import SEOExtras from "../components/seo/SEOExtras";
+import { Metadata } from "next";
 
 const urbanist = Urbanist({
   subsets: ["latin"],
@@ -14,7 +15,7 @@ const urbanist = Urbanist({
   display: "swap",
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: {
     default: "Start Your Business in 1 Day | Motivo",
     template: "%s | Motivo",
