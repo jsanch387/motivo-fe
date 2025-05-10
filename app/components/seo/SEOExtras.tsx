@@ -1,10 +1,7 @@
 "use client";
-import { usePathname } from "next/navigation";
 import Head from "next/head";
 
 export default function SEOExtras() {
-  const pathname = usePathname();
-
   return (
     <>
       <Head>
@@ -15,10 +12,7 @@ export default function SEOExtras() {
           content="Launch your business in minutes—not days. Motivo gives you a business name, logo, marketing flyer, and tools to get your first clients fast. No design skills needed."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link
-          rel="canonical"
-          href={`https://usemotivo.app${pathname === "/" ? "" : pathname}`}
-        />
+        <link rel="canonical" href={`https://usemotivo.app/`} />
 
         {/* Preconnect for fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
