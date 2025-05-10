@@ -18,6 +18,7 @@ export default function StarterKitEntryPoint({
       />
     ) : (
       <LockedKitAndFlyer
+        disablePadding={true}
         brandKit={serverData.brand_kit}
         flyerUrl={serverData.flyer_url ?? null}
       />
