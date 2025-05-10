@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Sitemap: https://usemotivo.app/sitemap.xml
+
+# Block crawling of non-essential pages 
+Disallow: /dashboard
+Disallow: /api

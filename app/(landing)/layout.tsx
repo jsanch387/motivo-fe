@@ -6,31 +6,49 @@ import AuthInitializer from "../features/Authentication/AuthInitializer";
 import Footer from "../features/landing/Footer";
 import "../globals.css";
 import { Analytics } from "@vercel/analytics/react";
+import SEOExtras from "../components/seo/SEOExtras";
 
 const urbanist = Urbanist({
   subsets: ["latin"],
-  weight: ["400", "600"], // Removed 800 unless absolutely needed
-  display: "swap", // Improves font loading performance
+  weight: ["400", "600"],
+  display: "swap",
 });
 
 export const metadata = {
   title: {
-    default: "Start Your Business in 1 Day | Motivo ",
-    template: "%s | Motivo", // For child pages
+    default: "Start Your Business in 1 Day | Motivo",
+    template: "%s | Motivo",
   },
   description:
     "Launch your business in minutes—not days. Motivo gives you a business name, logo, marketing flyer, and tools to get your first clients fast. No design skills needed.",
-  keywords: [
-    "how to start a business",
-    "business startup tools",
-    "get first clients fast",
-    "side hustle branding",
-    "LLC formation aid",
-  ],
   icons: {
     icon: "/favicon.png",
   },
   metadataBase: new URL("https://usemotivo.app"),
+  openGraph: {
+    title: "Start Your Business in 1 Day | Motivo",
+    description:
+      "Launch your business in minutes—not days. Get a business name, logo, flyer, and more.",
+    url: "https://usemotivo.app",
+    siteName: "Motivo",
+    images: [
+      {
+        url: "https://usemotivo.app/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Motivo - Start Your Business",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Start Your Business in 1 Day | Motivo",
+    description:
+      "Launch your business in minutes—not days. Get a business name, logo, flyer, and more.",
+    images: ["https://usemotivo.app/og-image.png"],
+  },
 };
 
 export default function RootLayout({
@@ -39,54 +57,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" dir="ltr">
-      <head>
-        {/* Canonical URL */}
-        <link rel="canonical" href="https://usemotivo.app" />
-        {/* Preconnect for performance */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        {/* Structured Data */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            name: "Motivo",
-            description: "Tools to start any type of business",
-            url: "https://usemotivo.app",
-            applicationCategory: "BusinessApplication",
-            featureList: [
-              "Business Name Generator",
-              "Custom Logo Design",
-              "Client Contract Templates",
-            ],
-          })}
-        </script>
-      </head>
+    <html lang="en">
       <body
         className={`${urbanist.className} min-h-screen flex flex-col bg-[var(--background)]`}
       >
+        <SEOExtras />
         <AuthInitializer />
-
-        {/* Mobile Nav */}
         <MobileNav />
-
-        {/* Desktop Nav */}
         <div className="hidden md:block">
           <Navbar />
         </div>
-
-        {/* Main content */}
         <main className="flex-1">
           {children}
           <Analytics />
         </main>
-
-        {/* Footer */}
         <Footer />
       </body>
     </html>
