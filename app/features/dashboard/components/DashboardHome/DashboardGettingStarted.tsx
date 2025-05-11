@@ -8,7 +8,7 @@ interface Props {
 
 export default function DashboardGettingStarted({ data }: Props) {
   return (
-    <main className="px-6 py-10 space-y-10">
+    <main className="px-4 py-10 space-y-10">
       <WelcomeBanner status={data.onboardingStatus} />
       {data.progress && (
         <StarterKitProgress

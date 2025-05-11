@@ -9,7 +9,7 @@ interface Props {
 
 export default function DashboardInProgress({ data }: Props) {
   return (
-    <main className="px-6 py-10 space-y-10">
+    <main className="px-4 py-10 space-y-10">
       <WelcomeBanner status="in_progress" />
       {data.progress && (
         <StarterKitProgress
