@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { useState } from "react";
@@ -9,46 +8,15 @@ import StepModal from "./Modal/StepModal";
 import { stepComponentMap } from "./Steps/stepComponentMap";
 import Button from "@/app/components/ui/Button";
 import { CheckCircle2 } from "lucide-react";
-
-// ✅ ✅ ✅ MOCK API FUNCTION (replace later with real fetch)
-async function fetchStepDataFromBackend(stepKey: string) {
-  console.log(`fetching data for step: ${stepKey}`);
-  await new Promise((resolve) => setTimeout(resolve, 500)); // simulate delay
-
-  if (stepKey === "join-groups") {
-    return {
-      groups: [
-        {
-          name: "Austin Homeowners & Neighbors",
-          members: "8,200 members",
-          url: "https://facebook.com/groups/austinhomeowners",
-          tip: "Post before/after photos in existing threads for better engagement",
-        },
-        {
-          name: "Austin Auto Enthusiasts Club",
-          members: "5,100 members",
-          url: "https://facebook.com/groups/austinauto",
-          tip: "Comment on 3-5 posts before sharing your services",
-        },
-        {
-          name: "Austin Small Business Network",
-          members: "12,000 members",
-          url: "https://facebook.com/groups/austinsmallbiz",
-          tip: "Share special offers only on promo days (Wednesdays)",
-        },
-      ],
-    };
-  }
-
-  // ✅ safe default for other steps
-  return { success: true };
-}
+import { markStepComplete } from "../api/markStepComplete";
+import { fetchStepData } from "../api/fetchStepData"; // ✅ real backend call
 
 interface Props {
   userService: string;
   userLocation: string;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function LaunchChecklist({ userService, userLocation }: Props) {
   const [completedSteps, setCompletedSteps] = useState<number[]>([]);
   const [activeStepIndex, setActiveStepIndex] = useState<number | null>(null);
@@ -61,11 +29,12 @@ export default function LaunchChecklist({ userService, userLocation }: Props) {
   const activeStep = activeStepIndex !== null ? steps[activeStepIndex] : null;
   const StepContent = activeStep ? stepComponentMap[activeStep.stepKey] : null;
 
-  // ✅ NEW: handle step open + fetch + store data
   const handleStepOpen = async (index: number) => {
     const step = steps[index];
 
-    // only AI steps (you can define this inside steps later)
+    // ✅ open modal immediately
+    setActiveStepIndex(index);
+
     const aiSteps = [
       "join-groups",
       "post-flyer",
@@ -73,30 +42,39 @@ export default function LaunchChecklist({ userService, userLocation }: Props) {
       "first-offer",
     ];
 
+    // ✅ only fetch if needed
     if (aiSteps.includes(step.stepKey) && !stepData[step.stepKey]) {
       setLoadingStep(true);
-
       try {
-        const data = await fetchStepDataFromBackend(step.stepKey);
+        const data = await fetchStepData(step.stepKey);
         setStepData((prev) => ({
           ...prev,
           [step.stepKey]: data,
         }));
       } catch (e) {
-        console.error("Failed to fetch step data", e);
-        return;
+        console.error("Failed to fetch step data:", e);
+        alert("We couldn’t load this step. Please try again.");
+        // ✅ keep modal open so user can retry or close
       } finally {
         setLoadingStep(false);
       }
     }
-
-    setActiveStepIndex(index);
   };
 
-  const handleComplete = () => {
-    if (activeStepIndex !== null && !completedSteps.includes(activeStepIndex)) {
-      setCompletedSteps((prev) => [...prev, activeStepIndex]);
+  const handleComplete = async () => {
+    if (activeStepIndex === null) return;
+    const step = steps[activeStepIndex];
+
+    if (!completedSteps.includes(activeStepIndex)) {
+      try {
+        await markStepComplete(step.stepKey);
+        setCompletedSteps((prev) => [...prev, activeStepIndex]);
+      } catch (e) {
+        console.error("Failed to mark step complete:", e);
+        alert("Something went wrong. Please try again.");
+      }
     }
+
     setActiveStepIndex(null);
   };
 
@@ -145,7 +123,6 @@ export default function LaunchChecklist({ userService, userLocation }: Props) {
         </p>
       </div>
 
-      {/* ✅ Modal for Step Detail */}
       {activeStep && StepContent && (
         <StepModal
           open
@@ -156,7 +133,6 @@ export default function LaunchChecklist({ userService, userLocation }: Props) {
             <div className="text-center py-10 text-zinc-400">Loading...</div>
           ) : (
             <>
-              {/* ✅ Pass stepData into StepContent */}
               <StepContent {...(stepData[activeStep.stepKey] ?? {})} />
               <Button
                 onClick={handleComplete}
