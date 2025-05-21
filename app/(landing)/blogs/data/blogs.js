@@ -11,6 +11,6 @@ export const blogPosts = [
 ];
 
 // ✅ helper function to safely get blog by slug
-export function getBlogPostBySlug(slug: string) {
+export function getBlogPostBySlug(slug) {
   return blogPosts.find((post) => post.slug === slug);
 }
