@@ -2,7 +2,15 @@
 
 import { motion } from "framer-motion";
 
-export default function LoadingIndicator() {
+interface LoadingIndicatorProps {
+  title?: string;
+  subtitle?: string;
+}
+
+export default function LoadingIndicator({
+  title,
+  subtitle,
+}: LoadingIndicatorProps) {
   return (
     <div className="min-h-[300px] flex flex-col items-center justify-center space-y-4">
       {/* Dots Animation */}
@@ -22,13 +30,13 @@ export default function LoadingIndicator() {
         ))}
       </div>
 
-      {/* Text */}
-      <div className="text-center">
-        <p className="text-white text-lg font-semibold">Building your kit...</p>
-        <p className="text-gray-400 text-sm mt-1">
-          This may take a moment. Hang tight!
-        </p>
-      </div>
+      {/* Optional Text */}
+      {(title || subtitle) && (
+        <div className="text-center">
+          {title && <p className="text-white text-lg font-semibold">{title}</p>}
+          {subtitle && <p className="text-gray-400 text-sm mt-1">{subtitle}</p>}
+        </div>
+      )}
     </div>
   );
 }

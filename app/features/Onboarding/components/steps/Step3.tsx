@@ -36,6 +36,7 @@ export default function Step3({ initialData, onNext, onUpdate }: Props) {
       hasFetchedRef.current = true;
       fetchPalettes();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchPalettes = async () => {

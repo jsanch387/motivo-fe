@@ -3,13 +3,11 @@
 import { useState } from "react";
 import { Copy, Check, Lightbulb } from "lucide-react";
 
-const captions = [
-  "🚗 Just launched in Austin! First 5 details get 20% off — DM to book!",
-  "Before ➡️ After. Want your car looking this good? Hit me up!",
-  "Serving Austin with fast, affordable detailing — let's get you cleaned up.",
-];
+interface PostFlyerStepProps {
+  captions?: string[]; // 👈 Accept dynamic captions from backend
+}
 
-export default function PostFlyerStep() {
+export default function PostFlyerStep({ captions = [] }: PostFlyerStepProps) {
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
   const handleCopy = (text: string, index: number) => {
@@ -46,7 +44,7 @@ export default function PostFlyerStep() {
               {copiedIndex === i ? (
                 <Check className="w-4 h-4 text-green-400" />
               ) : (
-                <Copy className="w-4 h-4 text-zinc-400 group-hover:text-blue-400" />
+                <Copy className="w-4 h-4 text-zinc-400 cursor-pointer group-hover:text-blue-400" />
               )}
             </button>
           </div>

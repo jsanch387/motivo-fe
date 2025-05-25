@@ -1,4 +1,4 @@
-import { blogPosts } from "./app/(landing)/blogs/data/blogs.js";
+import { blogPosts } from "./app/(landing)/blogs/data/blogs.ts";
 
 const sitemapConfig = {
   siteUrl: "https://usemotivo.app",

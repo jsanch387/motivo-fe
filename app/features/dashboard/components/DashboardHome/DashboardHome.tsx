@@ -16,6 +16,8 @@ export default function DashboardHome({ data }: DashboardHomeProps) {
     );
   }
 
+  console.log("DashboardHome data", data);
+
   switch (data.onboardingStatus) {
     case "not_started":
       return <DashboardGettingStarted data={data} />;
