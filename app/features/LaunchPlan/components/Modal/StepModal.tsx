@@ -31,7 +31,7 @@ export default function StepModal({ open, onClose, title, children }: Props) {
             {title ?? "Step Details"}
           </h2>
           <button onClick={onClose} aria-label="Close">
-            <XMarkIcon className="w-5 h-5 text-zinc-400 hover:text-white" />
+            <XMarkIcon className="w-5 h-5 text-zinc-400 hover:text-white cursor-pointer" />
           </button>
         </div>
 

@@ -3,13 +3,19 @@
 import { useState } from "react";
 import { Copy, Check, Lightbulb } from "lucide-react";
 
-const offers = [
+type FirstOfferStepProps = {
+  offers?: string[];
+};
+
+const defaultOffers = [
   "20% off your first detail (limited to first 3 customers)",
   "Book 1 detail, get a free interior wipe on your next visit",
   "$10 off your next detail if you refer a friend who books with me",
 ];
 
-export default function FirstOfferStep() {
+export default function FirstOfferStep({
+  offers = defaultOffers,
+}: FirstOfferStepProps) {
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
   const handleCopy = (text: string, index: number) => {
@@ -66,7 +72,7 @@ export default function FirstOfferStep() {
               {copiedIndex === i ? (
                 <Check className="w-4 h-4 text-green-400" />
               ) : (
-                <Copy className="w-4 h-4 text-zinc-400 group-hover:text-blue-400" />
+                <Copy className="w-4 h-4 text-zinc-400 group-hover:text-blue-400 cursor-pointer" />
               )}
             </button>
           </div>

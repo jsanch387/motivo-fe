@@ -100,7 +100,10 @@ export default function Step7({ initialData, onUpdate }: Props) {
   return (
     <div className="space-y-6">
       {loading ? (
-        <LoadingIndicator />
+        <LoadingIndicator
+          title="Building your kit..."
+          subtitle="This may take a moment. Hang tight!"
+        />
       ) : kit ? (
         <div className="space-y-4">
           <LockedKitAndFlyer

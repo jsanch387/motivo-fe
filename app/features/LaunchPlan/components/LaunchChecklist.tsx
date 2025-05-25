@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Card from "@/app/components/ui/Card";
 import { launchSteps } from "../constants/launchSteps";
 import LaunchStepCard from "./LaunchStepCard";
@@ -9,40 +9,47 @@ import { stepComponentMap } from "./Steps/stepComponentMap";
 import Button from "@/app/components/ui/Button";
 import { CheckCircle2 } from "lucide-react";
 import { markStepComplete } from "../api/markStepComplete";
-import { fetchStepData } from "../api/fetchStepData"; // ✅ real backend call
+import { fetchStepData } from "../api/fetchStepData";
+import { fetchCompletedSteps } from "../api/fetchCompletedSteps";
+import LoadingIndicator from "@/app/components/ui/LoadingIndicator";
 
-interface Props {
-  userService: string;
-  userLocation: string;
-}
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default function LaunchChecklist({ userService, userLocation }: Props) {
-  const [completedSteps, setCompletedSteps] = useState<number[]>([]);
+export default function LaunchChecklist() {
+  // Track which steps are marked complete (by stepKey, not index)
+  const [completedStepKeys, setCompletedStepKeys] = useState<string[]>([]);
   const [activeStepIndex, setActiveStepIndex] = useState<number | null>(null);
   const [loadingStep, setLoadingStep] = useState<boolean>(false);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [stepData, setStepData] = useState<Record<string, any>>({});
 
   const steps = launchSteps;
-  const completedCount = completedSteps.length;
+  const completedCount = completedStepKeys.length;
   const activeStep = activeStepIndex !== null ? steps[activeStepIndex] : null;
   const StepContent = activeStep ? stepComponentMap[activeStep.stepKey] : null;
+
+  // Load completed steps from backend on first mount
+  useEffect(() => {
+    const loadCompleted = async () => {
+      const keys = await fetchCompletedSteps();
+      setCompletedStepKeys(keys);
+    };
+
+    loadCompleted();
+  }, []);
+
+  console.log(
+    "Step keys:",
+    steps.map((s) => s.stepKey)
+  );
+  console.log("Completed keys:", completedStepKeys);
 
   const handleStepOpen = async (index: number) => {
     const step = steps[index];
 
-    // ✅ open modal immediately
-    setActiveStepIndex(index);
+    setActiveStepIndex(index); // Open modal immediately
 
-    const aiSteps = [
-      "join-groups",
-      "post-flyer",
-      "message-network",
-      "first-offer",
-    ];
+    const aiSteps = ["post-flyer", "message-network", "first-offer"];
 
-    // ✅ only fetch if needed
+    // Only fetch step data once
     if (aiSteps.includes(step.stepKey) && !stepData[step.stepKey]) {
       setLoadingStep(true);
       try {
@@ -54,7 +61,6 @@ export default function LaunchChecklist({ userService, userLocation }: Props) {
       } catch (e) {
         console.error("Failed to fetch step data:", e);
         alert("We couldn’t load this step. Please try again.");
-        // ✅ keep modal open so user can retry or close
       } finally {
         setLoadingStep(false);
       }
@@ -65,10 +71,10 @@ export default function LaunchChecklist({ userService, userLocation }: Props) {
     if (activeStepIndex === null) return;
     const step = steps[activeStepIndex];
 
-    if (!completedSteps.includes(activeStepIndex)) {
+    if (!completedStepKeys.includes(step.stepKey)) {
       try {
         await markStepComplete(step.stepKey);
-        setCompletedSteps((prev) => [...prev, activeStepIndex]);
+        setCompletedStepKeys((prev) => [...prev, step.stepKey]);
       } catch (e) {
         console.error("Failed to mark step complete:", e);
         alert("Something went wrong. Please try again.");
@@ -82,11 +88,11 @@ export default function LaunchChecklist({ userService, userLocation }: Props) {
     <Card>
       <div className="mb-6 space-y-2">
         <h2 className="text-white text-xl font-semibold">
-          Get Your First Client
+          Let’s Go Get Your First Client
         </h2>
-        <p className="text-zinc-400">
-          87% of {userService} businesses get clients through social media.
-          Complete these steps to start growing.
+        <p className="text-zinc-400 text-sm">
+          Follow these 5 simple steps — we’ll walk you through exactly what to
+          do to start getting real clients.
         </p>
       </div>
 
@@ -108,7 +114,7 @@ export default function LaunchChecklist({ userService, userLocation }: Props) {
             title={step.title}
             description={step.description}
             action={step.action}
-            isComplete={completedSteps.includes(i)}
+            isComplete={completedStepKeys.includes(step.stepKey)}
             onClick={() => handleStepOpen(i)}
           />
         ))}
@@ -130,17 +136,27 @@ export default function LaunchChecklist({ userService, userLocation }: Props) {
           title={activeStep.title}
         >
           {loadingStep ? (
-            <div className="text-center py-10 text-zinc-400">Loading...</div>
+            <LoadingIndicator title="Loading..." />
           ) : (
             <>
               <StepContent {...(stepData[activeStep.stepKey] ?? {})} />
-              <Button
-                onClick={handleComplete}
-                className="w-full bg-violet-600 hover:bg-violet-500 text-white font-medium text-sm py-2 mt-6"
-                icon={<CheckCircle2 className="w-4 h-4" />}
-              >
-                Mark Step Complete
-              </Button>
+              {completedStepKeys.includes(activeStep.stepKey) ? (
+                <Button
+                  disabled
+                  className="w-full bg-zinc-700 text-white font-medium text-sm py-2 mt-6 cursor-default"
+                  icon={<CheckCircle2 className="w-4 h-4" />}
+                >
+                  Step Completed
+                </Button>
+              ) : (
+                <Button
+                  onClick={handleComplete}
+                  className="w-full bg-violet-600 hover:bg-violet-500 text-white font-medium text-sm py-2 mt-6"
+                  icon={<CheckCircle2 className="w-4 h-4" />}
+                >
+                  Mark Step Complete
+                </Button>
+              )}
             </>
           )}
         </StepModal>

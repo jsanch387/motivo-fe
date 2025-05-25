@@ -8,7 +8,7 @@ export const launchSteps = [
   {
     stepKey: "join-groups",
     title: "Join local groups",
-    description: "Find active Facebook/Nextdoor groups in your area",
+    description: "Find active Facebook groups in your area",
     action: "Find groups",
   },
   {

@@ -3,13 +3,14 @@
 import { useState } from "react";
 import { Copy, Check, Lightbulb } from "lucide-react";
 
-const messages = [
-  "Hey! I just started my own car detailing business in Austin. If you or anyone you know needs a detail, I’d love to help out. First few people get a discount 🙏",
-  "Big news! I’m doing 3 discounted car details this week in Austin. If you or a friend needs one, let me know 💪",
-  "Know someone who needs a fresh detail in Austin? I’ve got a launch offer running for first-time clients 🚗✨ let me know!",
-];
+// ✅ Accept props from API
+interface MessageNetworkStepProps {
+  scripts?: string[]; // optional fallback
+}
 
-export default function MessageNetworkStep() {
+export default function MessageNetworkStep({
+  scripts = [],
+}: MessageNetworkStepProps) {
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
   const handleCopy = (text: string, index: number) => {
@@ -33,25 +34,29 @@ export default function MessageNetworkStep() {
 
       {/* Message cards */}
       <div className="space-y-3">
-        {messages.map((msg, i) => (
-          <div
-            key={i}
-            className="relative group rounded-lg bg-zinc-800 border border-zinc-700 p-4 pr-10 hover:border-blue-500/30 transition-colors"
-          >
-            <p className="text-white">{msg}</p>
-            <button
-              onClick={() => handleCopy(msg, i)}
-              className="absolute top-3 right-3 p-1.5 rounded hover:bg-zinc-700 transition-colors"
-              aria-label="Copy message"
+        {scripts.length > 0 ? (
+          scripts.map((msg, i) => (
+            <div
+              key={i}
+              className="relative group rounded-lg bg-zinc-800 border border-zinc-700 p-4 pr-10 hover:border-blue-500/30 transition-colors"
             >
-              {copiedIndex === i ? (
-                <Check className="w-4 h-4 text-green-400" />
-              ) : (
-                <Copy className="w-4 h-4 text-zinc-400 group-hover:text-blue-400" />
-              )}
-            </button>
-          </div>
-        ))}
+              <p className="text-white">{msg}</p>
+              <button
+                onClick={() => handleCopy(msg, i)}
+                className="absolute top-3 right-3 p-1.5 rounded hover:bg-zinc-700 transition-colors"
+                aria-label="Copy message"
+              >
+                {copiedIndex === i ? (
+                  <Check className="w-4 h-4 text-green-400" />
+                ) : (
+                  <Copy className="w-4 h-4 text-zinc-400 group-hover:text-blue-400 cursor-pointer" />
+                )}
+              </button>
+            </div>
+          ))
+        ) : (
+          <p className="text-sm text-zinc-400">No suggestions available yet.</p>
+        )}
       </div>
 
       {/* Tip box */}
