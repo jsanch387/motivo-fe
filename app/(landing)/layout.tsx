@@ -27,16 +27,15 @@ export const metadata: Metadata = {
     "ai business tools",
     "logo generator",
     "marketing flyer creator",
-    "motivo",
-    "motivo app",
+    "start a business",
+    "service based business",
     "entrepreneur tools",
   ],
   icons: {
-    icon: "/favicon.png", // Ensure this path is correct from the /public directory
+    icon: "/favicon.png",
   },
   alternates: {
     canonical: "/", // For the homepage
-    // Add other alternates like languages if needed here
   },
   robots: {
     // Be explicit about indexing
@@ -79,14 +78,9 @@ export default function RootLayout({
     "@type": "Organization",
     name: "Motivo",
     url: "https://usemotivo.app",
-    logo: "https://usemotivo.app/your-actual-logo.png", // Replace with your actual logo URL
+    logo: "https://usemotivo.app/favicon.png",
     description:
       "Motivo helps entrepreneurs start and grow businesses with AI-powered branding and marketing tools.",
-    sameAs: [
-      // Add your social media profiles
-      "https://twitter.com/usemotivo", // Example, replace with actual
-      "https://www.linkedin.com/company/usemotivo", // Example, replace with actual
-    ],
   };
 
   return (
