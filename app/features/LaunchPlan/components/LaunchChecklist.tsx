@@ -36,12 +36,6 @@ export default function LaunchChecklist() {
     loadCompleted();
   }, []);
 
-  console.log(
-    "Step keys:",
-    steps.map((s) => s.stepKey)
-  );
-  console.log("Completed keys:", completedStepKeys);
-
   const handleStepOpen = async (index: number) => {
     const step = steps[index];
 
