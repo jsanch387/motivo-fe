@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { Metadata, ResolvingMetadata } from "next";
-import { getBlogPostBySlug, BlogPost } from "../data/blogs";
+import { getBlogPostBySlug } from "../data/blogs";
 
 // Correct typing for Next.js 15 where `params` is a Promise
 export async function generateMetadata(
@@ -55,7 +55,7 @@ export default async function BlogPostPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const postMeta: BlogPost | undefined = getBlogPostBySlug(slug);
+  const postMeta = getBlogPostBySlug(slug);
 
   if (!postMeta) notFound();
 

@@ -1,4 +1,4 @@
-// app/(landing)/blogs/data/blogs.js
+// app/(landing)/blogs/data/blogs.ts
 
 export const blogPosts = [
   {
