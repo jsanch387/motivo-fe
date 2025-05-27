@@ -1,15 +1,6 @@
-// app/(landing)/blogs/data/blogs.ts
+// app/(landing)/blogs/data/blogs.js
 
-export interface BlogPost {
-  slug: string;
-  title: string;
-  imageUrl: string;
-  excerpt: string;
-  publishedDate: string;
-  // authorName?: string; // Optional: if you ever decide to add it
-}
-
-export const blogPosts: BlogPost[] = [
+export const blogPosts = [
   {
     slug: "brand-your-service-business",
     title: "How to Brand Your Local Service Business",
@@ -29,6 +20,6 @@ export const blogPosts: BlogPost[] = [
 ];
 
 // ✅ helper function to safely get blog by slug
-export function getBlogPostBySlug(slug: string): BlogPost | undefined {
+export function getBlogPostBySlug(slug) {
   return blogPosts.find((post) => post.slug === slug);
 }
