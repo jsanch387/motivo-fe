@@ -31,6 +31,11 @@ export default function Step2({ initialData, onNext, onUpdate }: Props) {
   const [regenerating, setRegenerating] = useState(false);
   const [regenerationsLeft, setRegenerationsLeft] = useState(MAX_REGENERATIONS);
 
+  // Keep track of all previously seen names
+  const [allSuggested, setAllSuggested] = useState<Set<string>>(
+    () => new Set(initialData.business_name_suggestions || [])
+  );
+
   useEffect(() => {
     const shouldFetch = !hasFetchedRef.current && nameOptions.length === 0;
     if (shouldFetch) {
@@ -47,10 +52,20 @@ export default function Step2({ initialData, onNext, onUpdate }: Props) {
     setRegenerating(isRegenerate);
 
     try {
-      const suggestions = await generateFromAI<string[]>("business_names");
+      const suggestions = await generateFromAI<string[]>("business_names", {
+        alreadySuggested: Array.from(allSuggested),
+      });
+
+      setAllSuggested((prev) => {
+        const next = new Set(prev);
+        suggestions.forEach((name) => next.add(name));
+        return next;
+      });
+
       setNameOptions(suggestions);
       setSelected(null);
       setCustomName("");
+
       if (isRegenerate) {
         setRegenerationsLeft((prev) => prev - 1);
       }
