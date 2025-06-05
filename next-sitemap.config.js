@@ -16,6 +16,8 @@ const sitemapConfig = {
     "/(auth)/*",
     "/signup",
     "/login",
+    "/privacy",
+    "/terms",
   ],
   additionalPaths: async () => {
     const paths = blogPosts.map((post) => ({
@@ -24,14 +26,7 @@ const sitemapConfig = {
       priority: 0.7,
     }));
 
-    return [
-      { loc: "/" },
-      { loc: "/about" },
-      { loc: "/blogs" },
-      { loc: "/terms" },
-      { loc: "/privacy" },
-      ...paths,
-    ];
+    return [{ loc: "/" }, { loc: "/about" }, { loc: "/blogs" }, ...paths];
   },
   sitemapSize: 5000,
   changefreq: "weekly",

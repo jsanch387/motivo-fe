@@ -15,7 +15,7 @@ const urbanist = Urbanist({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://usemotivo.app"), // Crucial for resolving relative URLs
+  metadataBase: new URL("https://usemotivo.app"),
   title: {
     default: "Start Your Business in 1 Day | Motivo",
     template: "%s | Motivo",
@@ -35,10 +35,9 @@ export const metadata: Metadata = {
     icon: "/favicon.png",
   },
   alternates: {
-    canonical: "/", // For the homepage
+    canonical: "/",
   },
   robots: {
-    // Be explicit about indexing
     index: true,
     follow: true,
     googleBot: {
@@ -53,14 +52,14 @@ export const metadata: Metadata = {
     title: "Start Your Business in 1 Day | Motivo",
     description:
       "Launch your business in minutes—not days. Get a business name, logo, flyer, and more.",
-    url: "/", // Relative to metadataBase for the homepage
+    url: "/",
     siteName: "Motivo",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Motivo: AI-powered tools to start your business quickly.", // More descriptive alt
+        alt: "Motivo: AI-powered tools to start your business quickly.",
       },
     ],
     locale: "en_US",
@@ -83,22 +82,40 @@ export default function RootLayout({
       "Motivo helps entrepreneurs start and grow businesses with AI-powered branding and marketing tools.",
   };
 
+  const jsonLdWebsite = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Motivo",
+    alternateName: "usemotivo.app",
+    url: "https://usemotivo.app",
+  };
+
   return (
     <html lang="en">
       <head>
-        {/* Preconnect for fonts - good to keep if they are critical */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
           href="https://fonts.gstatic.com"
-          crossOrigin="anonymous" // 'anonymous' is often better than just `true`
+          crossOrigin="anonymous"
         />
-        {/* SEOExtras component is removed. Its functionality is now in the metadata object or here. */}
+        {/* Add both structured data scripts here */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLdOrganization),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLdWebsite),
+          }}
+        />
       </head>
       <body
         className={`${urbanist.className} min-h-screen flex flex-col bg-[var(--background)]`}
       >
-        {/* AuthInitializer should not interfere with metadata if it's purely for auth state */}
         <AuthInitializer />
         <MobileNav />
         <div className="hidden md:block">
@@ -106,16 +123,9 @@ export default function RootLayout({
         </div>
         <main className="flex-1">
           {children}
-          <Analytics /> {/* Vercel Analytics is fine */}
+          <Analytics />
         </main>
         <Footer />
-        {/* Add JSON-LD structured data here */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(jsonLdOrganization),
-          }}
-        />
       </body>
     </html>
   );
