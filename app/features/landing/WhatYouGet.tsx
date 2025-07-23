@@ -40,7 +40,7 @@ export default function WhatYouGet() {
                   icon: BookOpenIcon,
                   title: "Custom Niche Guide",
                   description:
-                    "A professionally designed, in-depth PDF guide tailored to your audience&apos;s biggest questions, delivered as an editable Google Doc.",
+                    "A professionally designed, in-depth PDF guide tailored to your audience's biggest questions, delivered as an editable Google Doc.",
                   color: "text-indigo-600",
                 },
                 {

@@ -29,8 +29,7 @@ export default function ProblemSection() {
             {[
               {
                 title: "Content ≠ Income", // Used HTML entity for not equal
-                description:
-                  "You post daily but the revenue isn&apos;t following",
+                description: "You post daily but the revenue isn't following",
                 icon: (
                   <svg
                     className="h-6 w-6 text-indigo-600"
@@ -69,7 +68,7 @@ export default function ProblemSection() {
               {
                 title: "Time Sink",
                 description:
-                  "Designing and structuring takes hours you don&apos;t have",
+                  "Designing and structuring takes hours you don’t have",
                 icon: (
                   <svg
                     className="h-6 w-6 text-indigo-600"
@@ -142,7 +141,7 @@ export default function ProblemSection() {
             iconPosition="right"
           >
             Get Your Free Product Blueprint
-          </Button>{" "}
+          </Button>
         </div>
       </div>
     </section>

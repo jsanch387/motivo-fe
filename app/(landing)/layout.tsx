@@ -2,7 +2,7 @@
 import { Urbanist } from "next/font/google";
 import Navbar from "../components/navigation/NavBar";
 import MobileNav from "../components/navigation/LandingMobileNav";
-import AuthInitializer from "../features/Authentication/AuthInitializer";
+// import AuthInitializer from "../features/Authentication/AuthInitializer";
 import Footer from "../features/landing/Footer";
 import "../globals.css";
 import { Analytics } from "@vercel/analytics/react";
@@ -121,7 +121,7 @@ export default function RootLayout({
       <body
         className={`${urbanist.className} min-h-screen flex flex-col bg-[var(--background)]`}
       >
-        <AuthInitializer />
+        {/* <AuthInitializer /> */}
         <MobileNav />
         <div className="hidden md:block">
           <Navbar />
