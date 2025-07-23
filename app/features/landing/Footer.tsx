@@ -14,7 +14,7 @@ export default function Footer() {
             Motivo
           </h2>
           <p className="text-sm text-gray-400 max-w-xs">
-            Helping you launch your side hustle — fast, smart, and stress-free.
+            Ship a sellable guide in hours, not weeks.
           </p>
         </div>
 
@@ -24,25 +24,25 @@ export default function Footer() {
           <ul className="space-y-2 text-sm text-gray-400">
             <li>
               <Link
-                href={ROUTES.DASHBOARD}
+                href={ROUTES.FORM}
                 className="hover:text-blue-400 transition"
               >
-                Dashboard
+                Request Form
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link
                 href={ROUTES.BLOGS}
                 className="hover:text-blue-400 transition"
               >
                 Blogs
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
 
         {/* Legal */}
-        <div>
+        {/* <div>
           <h3 className="text-sm font-semibold mb-3 text-gray-300">Legal</h3>
           <ul className="space-y-2 text-sm text-gray-400">
             <li>
@@ -62,7 +62,7 @@ export default function Footer() {
               </Link>
             </li>
           </ul>
-        </div>
+        </div> */}
 
         {/* Contact */}
         <div>
@@ -76,14 +76,14 @@ export default function Footer() {
                 {VARIABLES.EMAIL}
               </a>
             </li>
-            <li>
+            {/* <li>
               <Link
                 href={ROUTES.ABOUT}
                 className="hover:text-blue-400 transition"
               >
                 About Us
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

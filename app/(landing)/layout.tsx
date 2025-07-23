@@ -10,26 +10,29 @@ import { Metadata } from "next";
 
 const urbanist = Urbanist({
   subsets: ["latin"],
-  weight: ["400", "600"],
+  // IMPORTANT: Added '900' to the weights to correctly support font-black
+  weight: ["400", "600", "900"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://usemotivo.app"),
   title: {
-    default: "Start Your Business in 1 Day | Motivo",
+    default: "Turn Your Expertise Into Profitable Digital Products | Motivo",
     template: "%s | Motivo",
   },
   description:
-    "Launch your business in minutes—not days. Motivo gives you a business name, logo, marketing flyer, and tools to get your first clients fast. No design skills needed.",
+    "Creators with 2k–10k followers: stop leaving money on the table. Motivo instantly builds niche‑specific guides, workbooks, calendars, and checklists you can start selling today—zero design or tech hassle.",
   keywords: [
-    "business startup",
-    "ai business tools",
-    "logo generator",
-    "marketing flyer creator",
-    "start a business",
-    "service based business",
-    "entrepreneur tools",
+    "creator monetization",
+    "digital product bundles",
+    "sell digital products",
+    "guides and workbooks",
+    "content creator tools",
+    "make money online",
+    "done‑for‑you products",
+    "ebook creator",
+    "passive income",
   ],
   icons: {
     icon: "/favicon.png",
@@ -49,17 +52,17 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Start Your Business in 1 Day | Motivo",
+    title: "Turn Your Expertise Into Profitable Digital Products | Motivo",
     description:
-      "Launch your business in minutes—not days. Get a business name, logo, flyer, and more.",
+      "Motivo crafts ready‑to‑sell guides, templates, and checklists so you can monetize your audience in minutes—no design skills needed.",
     url: "/",
     siteName: "Motivo",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.png", // swap this when you have a new banner
         width: 1200,
         height: 630,
-        alt: "Motivo: AI-powered tools to start your business quickly.",
+        alt: "Motivo converts your knowledge into ready‑to‑sell digital products.",
       },
     ],
     locale: "en_US",
@@ -79,7 +82,7 @@ export default function RootLayout({
     url: "https://usemotivo.app",
     logo: "https://usemotivo.app/favicon.png",
     description:
-      "Motivo helps entrepreneurs start and grow businesses with AI-powered branding and marketing tools.",
+      "Motivo empowers creators to monetize faster with AI‑built digital‑product bundles—guides, calendars, templates, and more.",
   };
 
   const jsonLdWebsite = {
@@ -88,6 +91,8 @@ export default function RootLayout({
     name: "Motivo",
     alternateName: "usemotivo.app",
     url: "https://usemotivo.app",
+    description:
+      "Generate high‑value, ready‑to‑sell digital products tailored to your niche and audience size.",
   };
 
   return (

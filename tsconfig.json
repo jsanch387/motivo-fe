@@ -27,7 +27,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "app/(landing)/blogs/data/blogs.js"
+    "app/(landing)/blogs/data/blogs.js",
+    "app/(dashboard)/(layout)"
   ],
   "exclude": ["node_modules"]
 }

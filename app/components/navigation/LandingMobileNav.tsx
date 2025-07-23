@@ -3,14 +3,14 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useAuthStore } from "@/app/features/Authentication/store/useAuthStore";
+// import { useAuthStore } from "@/app/features/Authentication/store/useAuthStore";
 import { ROUTES } from "@/lib/constants/routes";
-import Button from "../ui/Button";
+// import Button from "../ui/Button";
 import Image from "next/image";
 
 export default function LandingMobileNav() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const user = useAuthStore((s) => s.user);
+  // const user = useAuthStore((s) => s.user);
 
   return (
     <>
@@ -69,23 +69,23 @@ export default function LandingMobileNav() {
                 Home
               </Link>
               <Link
-                href={ROUTES.ABOUT}
+                href={ROUTES.FORM}
                 onClick={() => setMenuOpen(false)}
                 className="hover:text-white transition"
               >
-                About
+                Request Form
               </Link>
-              <Link
+              {/* <Link
                 href={ROUTES.BLOGS}
                 onClick={() => setMenuOpen(false)}
                 className="hover:text-white transition"
               >
                 Blogs
-              </Link>
+              </Link> */}
             </nav>
 
             {/* Auth Buttons */}
-            <div className="pt-6 border-t border-zinc-800 flex flex-col gap-4">
+            {/* <div className="pt-6 border-t border-zinc-800 flex flex-col gap-4">
               {user ? (
                 <Button
                   href={ROUTES.DASHBOARD}
@@ -115,7 +115,7 @@ export default function LandingMobileNav() {
                   </Button>
                 </>
               )}
-            </div>
+            </div> */}
           </div>
         </div>
       )}

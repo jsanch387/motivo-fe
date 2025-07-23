@@ -1,107 +1,101 @@
 @import "tailwindcss";
 
-/* Global CSS Variables */
+/* Root design tokens (light) */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --font-sans: "Urbanist", sans-serif; /* ⬅️ Updated */
-  --font-mono: "Courier New", monospace;
+  --color-bg: #ffffff;
+  --color-bg-alt: #f9fafb;
+  --color-text: #111827;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #121212; /* ⬅️ Softer dark tone */
-    --foreground: #ededed;
-  }
-}
-
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-  transition: background-color 9999s ease-in-out 0s;
-  -webkit-text-fill-color: #fff !important;
-  caret-color: rgb(7, 7, 7);
+/* Base reset-ish */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 html,
 body {
-  height: 100%; /* ✅ This is what was missing */
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
+  background: var(--color-bg-alt);
+  color: var(--color-text);
   font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  line-height: 1.5;
+  font-size: 16px;
+  overflow-x: hidden;
 }
 
-/* Custom scrollbar for dark mode */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 8px;
+img,
+svg,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: #1f1f1f; /* dark track */
+button {
+  font: inherit;
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: #4b5563; /* gray-600 */
-  border-radius: 8px;
-  border: 2px solid #1f1f1f; /* blend into track */
+:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
 }
 
-/* Firefox support */
-.custom-scrollbar {
-  scrollbar-width: thin;
-  scrollbar-color: #4b5563 #1f1f1f;
+.site-bg {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(180deg, #ffffff 0%, #fbfcfe 60%, #f7f9fc 100%);
 }
 
-html,
-body {
-  width: 100%;
-  overflow-x: hidden; /* ✅ prevents horizontal scroll */
+.site-bg::before,
+.site-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
 }
 
-/* Utility class to hide scrollbars across all browsers */
-.scrollbar-hide {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+/* Primary neutral grid */
+.site-bg::before {
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.15;
 }
 
-.scrollbar-hide::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+/* Secondary tinted grid (larger spacing) */
+.site-bg::after {
+  background-image: linear-gradient(
+      to right,
+      rgba(99, 102, 241, 0.15) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(99, 102, 241, 0.15) 1px, transparent 1px);
+  background-size: 120px 120px;
+  opacity: 0.08;
+  mix-blend-mode: normal; /* or 'plus-lighter' if you darken the page later */
 }
 
-.blog-content h1 {
-  font-size: 2.25rem;
-  font-weight: 700;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-}
-
-.blog-content h2 {
-  font-size: 1.75rem;
-  font-weight: 700;
-  margin-top: 1.5rem;
-  margin-bottom: 0.75rem;
-}
-
-.blog-content p {
-  margin-top: 1rem;
-  line-height: 1.75;
-}
-
-.blog-content ul {
-  list-style: disc;
-  padding-left: 1.5rem;
-  margin-top: 1rem;
-}
-
-.blog-content a {
-  color: #3b82f6;
-  text-decoration: underline;
-}
-
-.blog-content strong {
-  font-weight: 700;
+/* Optional: allow a variant where grid disappears on very small screens */
+@media (max-width: 480px) {
+  .site-bg::before,
+  .site-bg::after {
+    opacity: 0.1;
+    background-size: 48px 48px, 96px 96px;
+  }
 }

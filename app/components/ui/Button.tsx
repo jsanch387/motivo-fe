@@ -28,23 +28,24 @@ export default function Button({
   iconPosition = "left",
 }: ButtonProps) {
   const base =
-    "font-semibold rounded-lg transition duration-200 ease-in-out cursor-pointer inline-flex items-center justify-center";
+    "font-semibold transition duration-200 ease-in-out cursor-pointer inline-flex items-center justify-center";
 
   const variant = {
+    // Modified primary variant to match the ProblemSection's button style
     primary:
-      "bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:brightness-110 shadow-md shadow-blue-500/30",
+      "rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-sm hover:from-indigo-500 hover:to-purple-500 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2",
     secondary: "border border-gray-700 text-gray-200 hover:bg-gray-800",
   };
 
   const sizes = {
     sm: "text-sm px-4 py-2 gap-1.5",
-    md: "text-sm px-6 py-3 gap-2",
+    md: "text-sm px-6 py-3 gap-2", // Matches the original button's padding and text size
     lg: "text-base sm:text-lg px-8 py-4 gap-2.5",
   };
 
   const iconSizes = {
     sm: "w-4 h-4",
-    md: "w-5 h-5",
+    md: "w-4 h-4", // Changed to w-4 h-4 to match the original button's icon size
     lg: "w-6 h-6",
   };
 

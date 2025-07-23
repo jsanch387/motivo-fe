@@ -2,14 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import Button from "../ui/Button";
-import { useAuthStore } from "../../features/Authentication/store/useAuthStore";
+// import Button from "../ui/Button";
+// import { useAuthStore } from "../../features/Authentication/store/useAuthStore";
 import { ROUTES } from "@/lib/constants/routes";
 import Image from "next/image";
 
 export default function Navbar() {
   const pathname = usePathname();
-  const user = useAuthStore((s) => s.user);
+  // const user = useAuthStore((s) => s.user);
 
   return (
     <nav className="bg-zinc-900 border-b border-zinc-800">
@@ -30,13 +30,14 @@ export default function Navbar() {
           {/* Center Links */}
           <div className="hidden md:flex space-x-8">
             <NavLink href={ROUTES.HOME} label="Home" pathname={pathname} />
-            <NavLink href={ROUTES.ABOUT} label="About" pathname={pathname} />
-            <NavLink href={ROUTES.BLOGS} label="Blogs" pathname={pathname} />
+            <NavLink href={ROUTES.FORM} label="Form" pathname={pathname} />
+            {/* <NavLink href={ROUTES.ABOUT} label="About" pathname={pathname} />
+            <NavLink href={ROUTES.BLOGS} label="Blogs" pathname={pathname} /> */}
           </div>
 
           {/* Right side auth buttons */}
           <div className="flex items-center space-x-4">
-            {user ? (
+            {/* {user ? (
               <Button href={ROUTES.DASHBOARD} type="primary" size="sm">
                 Dashboard
               </Button>
@@ -52,7 +53,7 @@ export default function Navbar() {
                   Sign up
                 </Button>
               </>
-            )}
+            )} */}
           </div>
         </div>
       </div>

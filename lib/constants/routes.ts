@@ -8,6 +8,7 @@ export const ROUTES = {
   PRIVACY: "/privacy",
   LOGIN: "/login",
   SIGNUP: "/signup",
+  FORM: "/form",
 
   // Dashboard Core
   DASHBOARD: "/dashboard",
