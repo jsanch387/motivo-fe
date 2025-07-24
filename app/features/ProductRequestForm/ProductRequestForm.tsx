@@ -3,6 +3,8 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/outline"; // Import XCircleIcon for errors
+// Assuming submitRequestForm is correctly defined and imported from './api/submitRequestForm'
+// Make sure this path is correct in your project structure.
 import { submitRequestForm } from "./api/submitRequestForm";
 
 interface ProductRequestFormProps {
@@ -21,6 +23,10 @@ export default function ProductRequestForm({
     email: "",
     niche: "",
     audienceQuestions: "",
+    // New fields added below
+    audiencePlatformsAndSize: "", // For question 1
+    contentType: "", // For question 3
+    productIdea: "", // For question 5
   });
   // State to manage submission status: 'idle', 'submitting', 'success', 'error'
   const [submissionStatus, setSubmissionStatus] = useState<
@@ -42,6 +48,7 @@ export default function ProductRequestForm({
     }
   }, [minContainerHeight]);
 
+  // Corrected type for handleChange to explicitly handle both input and textarea events
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
@@ -56,10 +63,14 @@ export default function ProductRequestForm({
 
   // Basic frontend validation function
   const validateForm = (): boolean => {
+    // Check all required fields
     if (
       !form.email.trim() ||
       !form.niche.trim() ||
-      !form.audienceQuestions.trim()
+      !form.audienceQuestions.trim() ||
+      !form.audiencePlatformsAndSize.trim() || // New field validation
+      !form.contentType.trim() || // New field validation
+      !form.productIdea.trim() // New field validation
     ) {
       setErrorMessage("Please fill out all required fields.");
       return false;
@@ -89,7 +100,7 @@ export default function ProductRequestForm({
     console.log("Form submission initiated for:", form.email);
 
     try {
-      // ✅ Call your dedicated API function
+      // ✅ Call your dedicated API function with all form data
       const response = await submitRequestForm(form);
 
       console.log(
@@ -97,7 +108,15 @@ export default function ProductRequestForm({
         response.message
       );
       setSubmissionStatus("success");
-      setForm({ email: "", niche: "", audienceQuestions: "" }); // Clear form on success
+      // Optionally, keep form data for display or clear it based on preference
+      setForm({
+        email: "",
+        niche: "",
+        audienceQuestions: "",
+        audiencePlatformsAndSize: "",
+        contentType: "",
+        productIdea: "",
+      }); // Clear form on success
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.error("Form submission failed:", error.message);
@@ -177,8 +196,18 @@ export default function ProductRequestForm({
             required
             disabled={submissionStatus === "submitting"}
           />
+          <Textarea // Changed to Textarea for more flexibility
+            label="Do you currently have an audience? (TikTok, Instagram, YouTube, etc.) If so, roughly how big?"
+            name="audiencePlatformsAndSize"
+            placeholder="e.g., Yes, TikTok (5k followers), Instagram (2k followers)"
+            rows={2}
+            value={form.audiencePlatformsAndSize}
+            onChange={handleChange}
+            required
+            disabled={submissionStatus === "submitting"}
+          />
           <Input
-            label="Your Niche / Content Area"
+            label="What niche or topic do you focus on?"
             name="niche"
             placeholder="e.g., Fitness, Skincare, Personal Finance&hellip;"
             value={form.niche}
@@ -187,11 +216,31 @@ export default function ProductRequestForm({
             disabled={submissionStatus === "submitting"}
           />
           <Textarea
-            label="Top 3-5 Questions Your Audience Asks"
+            label="What kind of content do you usually post?"
+            name="contentType"
+            placeholder="e.g., Short-form video tutorials, long-form blog posts, live Q&A sessions"
+            rows={2}
+            value={form.contentType}
+            onChange={handleChange}
+            required
+            disabled={submissionStatus === "submitting"}
+          />
+          <Textarea
+            label="What do people often ask you about? (Common questions from your audience or things they struggle with)"
             name="audienceQuestions"
             placeholder="e.g., 'How to treat oily skin?', 'Best way to start investing?', 'How to grow my hair faster?'"
             rows={3}
             value={form.audienceQuestions}
+            onChange={handleChange}
+            required
+            disabled={submissionStatus === "submitting"}
+          />
+          <Textarea
+            label="Do you already have an idea for a guide or product? Or would you like me to suggest some ideas for you?"
+            name="productIdea"
+            placeholder="e.g., 'A guide on natural remedies for acne' or 'Please suggest ideas based on my answers'"
+            rows={2}
+            value={form.productIdea}
             onChange={handleChange}
             required
             disabled={submissionStatus === "submitting"}
@@ -243,7 +292,7 @@ interface TextareaProps
 function Textarea({ label, name, ...rest }: TextareaProps) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label htmlFor={name} className="text-xs font-medium text-slate-600">
+      <label htmlFor={name} className="text-sm font-medium text-slate-600">
         {label}
       </label>
       <textarea

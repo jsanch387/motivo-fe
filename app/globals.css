@@ -75,7 +75,7 @@ button {
     ),
     linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
   background-size: 60px 60px;
-  opacity: 0.15;
+  opacity: 0.3;
 }
 
 /* Secondary tinted grid (larger spacing) */

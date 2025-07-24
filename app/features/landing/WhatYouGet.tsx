@@ -14,12 +14,6 @@ import Image from "next/image";
 export default function WhatYouGet() {
   return (
     <section id="what-you-get" className="relative isolate py-24 sm:py-32">
-      {/* Removed: Background elements (relying on SiteBackground for global background) */}
-      {/* <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.05] [background-image:linear-gradient(to_right,rgba(0,0,0,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.1)_1px,transparent_1px)] [background-size:40px_40px]" />
-        <div className="absolute left-1/2 top-1/2 -z-10 h-[300px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-400/10 blur-[100px]" />
-      </div> */}
-
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
@@ -86,12 +80,6 @@ export default function WhatYouGet() {
             {/* Right column - Image placeholder */}
             <div className="flex items-center justify-center">
               <div className="relative w-full max-w-lg rounded-xl bg-white p-8 shadow-lg ring-1 ring-slate-200/50">
-                {/* Recommended image placeholder:
-                  - A screenshot of the actual Google Doc template with some sample content
-                  - Show the professional formatting with different heading levels
-                  - Include callout annotations highlighting key features
-                  - Make it look like a real product screenshot with subtle device mockup
-                */}
                 <Image
                   src="/landing-page.png"
                   alt="Template Preview"

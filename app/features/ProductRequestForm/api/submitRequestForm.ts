@@ -7,6 +7,10 @@ interface ProductRequestPayload {
   email: string;
   niche: string;
   audienceQuestions: string;
+  // Added new fields to the payload type
+  audiencePlatformsAndSize: string;
+  contentType: string;
+  productIdea: string;
 }
 
 // Define the type for the successful response from the backend
